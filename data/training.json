@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-07T23:14:55.358Z",
-  "countriesCount": 195,
+  "generatedAt": "2026-04-08T05:32:15.505Z",
+  "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
     "exhaustive": true,
@@ -28,72 +28,68 @@
   "heuristic": {
     "best": {
       "name": "Saint Vincent and the Grenadines",
-      "expectedRemaining": 2.15,
-      "avgDistanceKm": 8835
+      "expectedRemaining": 2.13,
+      "avgDistanceKm": 8841
     },
     "top": [
       {
         "name": "Saint Vincent and the Grenadines",
-        "expectedRemaining": 2.15,
-        "avgDistanceKm": 8835
+        "expectedRemaining": 2.13,
+        "avgDistanceKm": 8841
       },
       {
         "name": "Barbados",
         "expectedRemaining": 2.19,
-        "avgDistanceKm": 8746
+        "avgDistanceKm": 8752
       },
       {
         "name": "Grenada",
-        "expectedRemaining": 2.21,
-        "avgDistanceKm": 8885
-      },
-      {
-        "name": "Indonesia",
-        "expectedRemaining": 2.23,
-        "avgDistanceKm": 8365
+        "expectedRemaining": 2.2,
+        "avgDistanceKm": 8891
       },
       {
         "name": "Saint Lucia",
+        "expectedRemaining": 2.21,
+        "avgDistanceKm": 8794
+      },
+      {
+        "name": "Indonesia",
         "expectedRemaining": 2.24,
-        "avgDistanceKm": 8788
+        "avgDistanceKm": 8349
       },
       {
         "name": "Palau",
-        "expectedRemaining": 2.32,
-        "avgDistanceKm": 11117
-      },
-      {
-        "name": "Dominica",
-        "expectedRemaining": 2.33,
-        "avgDistanceKm": 8757
-      },
-      {
-        "name": "East Timor",
-        "expectedRemaining": 2.33,
-        "avgDistanceKm": 10760
+        "expectedRemaining": 2.31,
+        "avgDistanceKm": 11113
       },
       {
         "name": "Antigua and Barbuda",
-        "expectedRemaining": 2.34,
-        "avgDistanceKm": 8718
+        "expectedRemaining": 2.31,
+        "avgDistanceKm": 8724
+      },
+      {
+        "name": "East Timor",
+        "expectedRemaining": 2.31,
+        "avgDistanceKm": 10751
+      },
+      {
+        "name": "Dominica",
+        "expectedRemaining": 2.32,
+        "avgDistanceKm": 8763
       },
       {
         "name": "Malaysia",
-        "expectedRemaining": 2.35,
-        "avgDistanceKm": 8763
+        "expectedRemaining": 2.36,
+        "avgDistanceKm": 8755
       }
     ]
   },
   "exhaustive": {
     "best": {
-      "name": "Holy See (Vatican City State)",
-      "avgGuesses": 3.33
+      "name": "Andorra",
+      "avgGuesses": 3.73
     },
     "top": [
-      {
-        "name": "Holy See (Vatican City State)",
-        "avgGuesses": 3.33
-      },
       {
         "name": "Andorra",
         "avgGuesses": 3.73
@@ -103,32 +99,36 @@
         "avgGuesses": 3.76
       },
       {
-        "name": "Grenada",
-        "avgGuesses": 3.77
+        "name": "Italy",
+        "avgGuesses": 3.89
       },
       {
-        "name": "Barbados",
-        "avgGuesses": 3.84
-      },
-      {
-        "name": "Seychelles",
+        "name": "Uganda",
         "avgGuesses": 3.91
       },
       {
-        "name": "Myanmar",
+        "name": "Lebanon",
         "avgGuesses": 3.92
       },
       {
-        "name": "Lebanon",
-        "avgGuesses": 3.93
-      },
-      {
         "name": "Mongolia",
-        "avgGuesses": 3.95
+        "avgGuesses": 3.96
       },
       {
-        "name": "Saint Vincent and the Grenadines",
-        "avgGuesses": 3.95
+        "name": "Albania",
+        "avgGuesses": 3.98
+      },
+      {
+        "name": "Switzerland",
+        "avgGuesses": 3.99
+      },
+      {
+        "name": "Myanmar",
+        "avgGuesses": 4.01
+      },
+      {
+        "name": "Nepal",
+        "avgGuesses": 4.01
       }
     ]
   }
