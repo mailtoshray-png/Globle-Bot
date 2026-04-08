@@ -38,12 +38,14 @@ const FALLBACK_COUNTRIES = [
 const SOVEREIGN_SOURCE = 'data/sovereign-countries.json';
 
 const DISTANCE_TOLERANCE_KM = 100;
+const BORDER_TOLERANCE_KM = 25;
 const DISTANCE_BUCKET_KM = 100;
 const ORDER_TOLERANCE_KM = 0;
 const TRIANGULATION_MIN_GUESSES = 2;
 const DEFAULT_TRI_WEIGHT_2 = 0.4;
 const DEFAULT_TRI_WEIGHT_3 = 0.5;
 const DEFAULT_TRI_WEIGHT_4 = 0.6;
+const DEFAULT_FARTHEST_WEIGHT = 0.2;
 
 const aliasCandidates = [
   ['usa', ['United States', 'United States of America']],
@@ -837,7 +839,8 @@ function filterCandidates() {
     let ok = true;
     for (const guess of distanceGuesses) {
       const d = getDistanceKm(guess.index, i);
-      if (Math.abs(d - guess.distanceKm) > DISTANCE_TOLERANCE_KM) {
+      const tolerance = guess.distanceKm === 0 ? BORDER_TOLERANCE_KM : DISTANCE_TOLERANCE_KM;
+      if (Math.abs(d - guess.distanceKm) > tolerance) {
         ok = false;
         break;
       }
@@ -930,35 +933,62 @@ function rankSuggestions(candidateIndices, guessPool = null) {
   const closestGuesses = getClosestDistanceGuesses();
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weights = getTriangulationWeights(closestGuesses.length);
+  const farthestGuess = state.guesses.length > 1 ? state.guesses[state.guesses.length - 1] : null;
+  const farthestWeight = farthestGuess
+    ? state.training?.strategy?.weights?.farthestWeight ?? DEFAULT_FARTHEST_WEIGHT
+    : 0;
   const scores = pool.map((idx) => {
     const expected = expectedRemainingSize(idx, candidateIndices);
     const avgDistance = averageDistance(idx, candidateIndices);
     const triangulation = useTriangulation ? triangulationError(idx, closestGuesses) : null;
-    return { index: idx, expected, avgDistance, triangulation, combined: null };
+    const farthestDistance = farthestGuess ? getDistanceKm(idx, farthestGuess.index) : null;
+    return { index: idx, expected, avgDistance, triangulation, farthestDistance, combined: null };
   });
 
-  if (useTriangulation) {
+  const useCombined = useTriangulation || farthestWeight > 0;
+  if (useCombined) {
     const expectedValues = scores.map((item) => item.expected);
-    const triangulationValues = scores.map((item) => item.triangulation);
     const expectedNorm = normalizeValues(expectedValues);
-    const triangulationNorm = normalizeValues(triangulationValues);
+    const triangulationNorm = useTriangulation
+      ? normalizeValues(scores.map((item) => item.triangulation))
+      : [];
+    const farthestPenalty = farthestGuess
+      ? normalizeValues(scores.map((item) => item.farthestDistance)).map((value) => 1 - value)
+      : [];
+    const weightScale = 1 - farthestWeight;
+    const expectedWeight = (useTriangulation ? weights.expected : 1) * weightScale;
+    const triangulationWeight = (useTriangulation ? weights.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      item.combined = expectedNorm[idx] * weights.expected + triangulationNorm[idx] * weights.triangulation;
+      let combined = expectedNorm[idx] * expectedWeight;
+      if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
+      if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
+      item.combined = combined;
     });
-    state.rankWeights = weights;
+    state.rankWeights = {
+      expected: expectedWeight,
+      triangulation: triangulationWeight,
+      farthest: farthestWeight,
+    };
   } else {
     state.rankWeights = null;
   }
 
   scores.sort((a, b) => {
-    if (useTriangulation && a.combined !== b.combined) {
+    if (useCombined && a.combined !== b.combined) {
       return a.combined - b.combined;
     }
     if (a.expected !== b.expected) return a.expected - b.expected;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
+    if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
+      return b.farthestDistance - a.farthestDistance;
+    }
     return a.avgDistance - b.avgDistance;
   });
   return scores;
+}
+
+function hasCombined(scores) {
+  return scores.length && scores[0].combined !== null;
 }
 
 function hasTriangulation(scores) {
@@ -973,7 +1003,7 @@ function formatCombinedLabel(item) {
   if (item.combined === null) return '';
   const weights = state.rankWeights;
   const weightLabel = weights
-    ? `(${Math.round(weights.expected * 100)}% exp / ${Math.round(weights.triangulation * 100)}% tri)`
+    ? `(${Math.round(weights.expected * 100)}% exp / ${Math.round(weights.triangulation * 100)}% tri / ${Math.round((weights.farthest || 0) * 100)}% far)`
     : '';
   return `Combined score: ${item.combined.toFixed(3)} ${weightLabel}`.trim();
 }
@@ -1093,11 +1123,13 @@ function recompute() {
     if (rankedFallback.length) {
       const bestFallback = rankedFallback[0];
       elements.nextGuessName.textContent = state.countries[bestFallback.index].name;
-      if (hasTriangulation(rankedFallback)) {
-        elements.nextGuessScore.textContent = `${formatCombinedLabel(bestFallback)} | ${formatTriangulationLabel(bestFallback)}`;
-        elements.nextGuessScorePill.textContent = 'balanced';
+      if (hasCombined(rankedFallback)) {
+        const parts = [formatCombinedLabel(bestFallback)];
+        if (hasTriangulation(rankedFallback)) parts.push(formatTriangulationLabel(bestFallback));
+        elements.nextGuessScore.textContent = parts.join(' | ');
+        elements.nextGuessScorePill.textContent = hasTriangulation(rankedFallback) ? 'balanced' : 'weighted';
       } else {
-      elements.nextGuessScore.textContent = 'No exact matches. Try another guess or adjust the order.';
+        elements.nextGuessScore.textContent = 'No exact matches. Try another guess or adjust the order.';
         elements.nextGuessScorePill.textContent = `${bestFallback.avgDistance.toFixed(0)} km avg`;
       }
 
@@ -1109,9 +1141,14 @@ function recompute() {
         name.textContent = state.countries[item.index].name;
         const score = document.createElement('div');
         score.className = 'score';
-        score.textContent = hasTriangulation(rankedFallback)
-          ? `${formatCombinedLabel(item)} | ${formatTriangulationLabel(item)} | Exp ${item.expected.toFixed(1)}`
-          : `Exp. remaining ${item.expected.toFixed(1)} | Avg ${item.avgDistance.toFixed(0)} km`;
+        if (hasCombined(rankedFallback)) {
+          const parts = [formatCombinedLabel(item)];
+          if (hasTriangulation(rankedFallback)) parts.push(formatTriangulationLabel(item));
+          parts.push(`Exp ${item.expected.toFixed(1)}`);
+          score.textContent = parts.join(' | ');
+        } else {
+          score.textContent = `Exp. remaining ${item.expected.toFixed(1)} | Avg ${item.avgDistance.toFixed(0)} km`;
+        }
         card.appendChild(name);
         card.appendChild(score);
         elements.topSuggestions.appendChild(card);
@@ -1139,9 +1176,11 @@ function recompute() {
 
   const best = ranked[0];
   elements.nextGuessName.textContent = state.countries[best.index].name;
-  if (hasTriangulation(ranked)) {
-    elements.nextGuessScore.textContent = `${formatCombinedLabel(best)} | ${formatTriangulationLabel(best)}`;
-    elements.nextGuessScorePill.textContent = 'balanced';
+  if (hasCombined(ranked)) {
+    const parts = [formatCombinedLabel(best)];
+    if (hasTriangulation(ranked)) parts.push(formatTriangulationLabel(best));
+    elements.nextGuessScore.textContent = parts.join(' | ');
+    elements.nextGuessScorePill.textContent = hasTriangulation(ranked) ? 'balanced' : 'weighted';
   } else {
     elements.nextGuessScore.textContent = `Expected remaining: ${best.expected.toFixed(1)} countries`;
     elements.nextGuessScorePill.textContent = `${best.avgDistance.toFixed(0)} km avg`;
@@ -1155,9 +1194,14 @@ function recompute() {
     name.textContent = state.countries[item.index].name;
     const score = document.createElement('div');
     score.className = 'score';
-    score.textContent = hasTriangulation(ranked)
-      ? `${formatCombinedLabel(item)} | ${formatTriangulationLabel(item)} | Exp ${item.expected.toFixed(1)}`
-      : `Exp. remaining ${item.expected.toFixed(1)} | Avg ${item.avgDistance.toFixed(0)} km`;
+    if (hasCombined(ranked)) {
+      const parts = [formatCombinedLabel(item)];
+      if (hasTriangulation(ranked)) parts.push(formatTriangulationLabel(item));
+      parts.push(`Exp ${item.expected.toFixed(1)}`);
+      score.textContent = parts.join(' | ');
+    } else {
+      score.textContent = `Exp. remaining ${item.expected.toFixed(1)} | Avg ${item.avgDistance.toFixed(0)} km`;
+    }
     card.appendChild(name);
     card.appendChild(score);
     elements.topSuggestions.appendChild(card);

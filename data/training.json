@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T05:58:01.075Z",
+  "generatedAt": "2026-04-08T17:09:32.180Z",
   "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
@@ -8,6 +8,7 @@
     "geoSample": 0,
     "geoStepKm": 10,
     "toleranceKm": 100,
+    "borderToleranceKm": 25,
     "bucketKm": 100,
     "maxSteps": 20,
     "earlyStop": false,
@@ -22,7 +23,8 @@
     "weights": {
       "triWeight2": 0,
       "triWeight3": 0,
-      "triWeight4": 0
+      "triWeight4": 0,
+      "farthestWeight": 0.2
     }
   },
   "heuristic": {
@@ -86,49 +88,49 @@
   },
   "exhaustive": {
     "best": {
-      "name": "Grenada",
-      "avgGuesses": 2.59
+      "name": "Antigua and Barbuda",
+      "avgGuesses": 2.6
     },
     "top": [
       {
-        "name": "Grenada",
-        "avgGuesses": 2.59
-      },
-      {
         "name": "Antigua and Barbuda",
-        "avgGuesses": 2.59
-      },
-      {
-        "name": "East Timor",
-        "avgGuesses": 2.59
-      },
-      {
-        "name": "Palau",
-        "avgGuesses": 2.59
-      },
-      {
-        "name": "Trinidad and Tobago",
-        "avgGuesses": 2.59
-      },
-      {
-        "name": "Dominica",
         "avgGuesses": 2.6
       },
       {
-        "name": "Indonesia",
+        "name": "Dominica",
         "avgGuesses": 2.61
       },
       {
-        "name": "Malaysia",
+        "name": "Grenada",
         "avgGuesses": 2.61
       },
       {
-        "name": "Barbados",
-        "avgGuesses": 2.61
+        "name": "Trinidad and Tobago",
+        "avgGuesses": 2.62
       },
       {
         "name": "Brunei",
-        "avgGuesses": 2.61
+        "avgGuesses": 2.62
+      },
+      {
+        "name": "Malaysia",
+        "avgGuesses": 2.62
+      },
+      {
+        "name": "Palau",
+        "avgGuesses": 2.62
+      },
+      {
+        "name": "Saint Kitts and Nevis",
+        "avgGuesses": 2.63
+      },
+      {
+        "name": "Saint Vincent and the Grenadines",
+        "avgGuesses": 2.63
+      },
+      {
+        "name": "Barbados",
+        "avgGuesses": 2.64
       }
     ]
   }

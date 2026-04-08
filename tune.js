@@ -6,6 +6,7 @@ const COUNTRIES_PATH = path.join(DATA_DIR, 'countries.json');
 const DISTANCES_PATH = path.join(DATA_DIR, 'distances.json');
 
 const DEFAULT_TOLERANCE_KM = 100;
+const DEFAULT_BORDER_TOLERANCE_KM = 25;
 const DEFAULT_BUCKET_KM = 100;
 const DEFAULT_MAX_STEPS = 20;
 const DEFAULT_COARSE_STEP = 0.1;
@@ -17,6 +18,7 @@ const DEFAULT_DEEP_MAX = 0.1;
 const DEFAULT_DEEP_STEP = 0.001;
 const DEFAULT_DEEP_LOG_EVERY = 500;
 const TRIANGULATION_MIN_GUESSES = 2;
+const DEFAULT_FARTHEST_WEIGHT = 0.2;
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -27,6 +29,7 @@ function parseArgs() {
   };
   return {
     toleranceKm: Number(getValue('--tolerance', DEFAULT_TOLERANCE_KM)),
+    borderToleranceKm: Number(getValue('--border-tolerance', DEFAULT_BORDER_TOLERANCE_KM)),
     bucketKm: Number(getValue('--bucket', DEFAULT_BUCKET_KM)),
     maxSteps: Number(getValue('--max-steps', DEFAULT_MAX_STEPS)),
     coarseStep: Number(getValue('--coarse-step', DEFAULT_COARSE_STEP)),
@@ -105,13 +108,14 @@ function buildOrderConstraints(guesses) {
   return { constraints };
 }
 
-function filterCandidates(allIndices, guesses, distances, n, toleranceKm) {
+function filterCandidates(allIndices, guesses, distances, n, toleranceKm, borderToleranceKm) {
   const { constraints } = buildOrderConstraints(guesses);
   return allIndices.filter((idx) => {
     for (const guess of guesses) {
       const d = distances[guess.index * n + idx];
       if (Number.isFinite(guess.distanceKm)) {
-        if (Math.abs(d - guess.distanceKm) > toleranceKm) return false;
+        const tolerance = guess.distanceKm === 0 ? borderToleranceKm : toleranceKm;
+        if (Math.abs(d - guess.distanceKm) > tolerance) return false;
       }
     }
     for (const constraint of constraints) {
@@ -127,6 +131,8 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
   const closestGuesses = guesses.filter((guess) => Number.isFinite(guess.distanceKm));
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weightConfig = getTriWeights(closestGuesses.length, weights);
+  const farthestGuess = guesses.length > 1 ? guesses[guesses.length - 1] : null;
+  const farthestWeight = farthestGuess ? DEFAULT_FARTHEST_WEIGHT : 0;
 
   const scores = [];
   candidateIndices.forEach((idx) => {
@@ -140,21 +146,37 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
     const triangulation = useTriangulation
       ? triangulationError(idx, closestGuesses, distances, n)
       : null;
-    scores.push({ index: idx, expected, avgDistance, triangulation, combined: null });
+    const farthestDistance = farthestGuess ? distances[idx * n + farthestGuess.index] : null;
+    scores.push({ index: idx, expected, avgDistance, triangulation, farthestDistance, combined: null });
   });
 
-  if (useTriangulation) {
+  const useCombined = useTriangulation || farthestWeight > 0;
+  if (useCombined) {
     const expectedNorm = normalizeValues(scores.map((item) => item.expected));
-    const triangulationNorm = normalizeValues(scores.map((item) => item.triangulation));
+    const triangulationNorm = useTriangulation
+      ? normalizeValues(scores.map((item) => item.triangulation))
+      : [];
+    const farthestPenalty = farthestGuess
+      ? normalizeValues(scores.map((item) => item.farthestDistance)).map((value) => 1 - value)
+      : [];
+    const weightScale = 1 - farthestWeight;
+    const expectedWeight = (useTriangulation ? weightConfig.expected : 1) * weightScale;
+    const triangulationWeight = (useTriangulation ? weightConfig.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      item.combined = expectedNorm[idx] * weightConfig.expected + triangulationNorm[idx] * weightConfig.triangulation;
+      let combined = expectedNorm[idx] * expectedWeight;
+      if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
+      if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
+      item.combined = combined;
     });
   }
 
   scores.sort((a, b) => {
-    if (useTriangulation && a.combined !== b.combined) return a.combined - b.combined;
+    if (useCombined && a.combined !== b.combined) return a.combined - b.combined;
     if (a.expected !== b.expected) return a.expected - b.expected;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
+    if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
+      return b.farthestDistance - a.farthestDistance;
+    }
     return a.avgDistance - b.avgDistance;
   });
   return scores;
@@ -185,7 +207,14 @@ function simulateTarget(targetIndex, n, distances, weights, settings) {
     }
     bestDistance = guesses[0].actualDistance;
     if (idx === targetIndex) return true;
-    candidates = filterCandidates(allIndices, guesses, distances, n, settings.toleranceKm);
+    candidates = filterCandidates(
+      allIndices,
+      guesses,
+      distances,
+      n,
+      settings.toleranceKm,
+      settings.borderToleranceKm,
+    );
     return false;
   };
 

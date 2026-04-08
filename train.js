@@ -32,6 +32,7 @@ const FALLBACK_COUNTRIES = [
 ];
 
 const DEFAULT_TOLERANCE_KM = 100;
+const DEFAULT_BORDER_TOLERANCE_KM = 25;
 const DEFAULT_BUCKET_KM = 100;
 const DEFAULT_MAX_STEPS = 12;
 const DEFAULT_GEO_SAMPLE = 60;
@@ -40,6 +41,7 @@ const TRIANGULATION_MIN_GUESSES = 2;
 const DEFAULT_TRI_WEIGHT_2 = 0.4;
 const DEFAULT_TRI_WEIGHT_3 = 0.5;
 const DEFAULT_TRI_WEIGHT_4 = 0.6;
+const DEFAULT_FARTHEST_WEIGHT = 0.2;
 const EARTH_RADIUS_KM = 6371;
 const LOCAL_CACHE_PATH = path.join(__dirname, 'data', 'countries.json');
 const SOVEREIGN_PATH = path.join(__dirname, 'data', 'sovereign-countries.json');
@@ -450,6 +452,8 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
   const closestGuesses = guesses.filter((guess) => Number.isFinite(guess.distanceKm));
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weights = getTriangulationWeights(closestGuesses.length);
+  const farthestGuess = guesses.length > 1 ? guesses[guesses.length - 1] : null;
+  const farthestWeight = farthestGuess ? DEFAULT_FARTHEST_WEIGHT : 0;
   candidateIndices.forEach((idx) => {
     if (guessedSet.has(idx)) return;
     const expected = expectedRemainingSize(idx, candidateIndices, bestDistance, distances, n);
@@ -461,23 +465,45 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
     const triangulation = useTriangulation
       ? triangulationError(idx, closestGuesses, distances, n)
       : null;
-    scores.push({ index: idx, expected, avgDistance, triangulation, combined: null });
+    const farthestDistance = farthestGuess ? distances[idx * n + farthestGuess.index] : null;
+    scores.push({
+      index: idx,
+      expected,
+      avgDistance,
+      triangulation,
+      farthestDistance,
+      combined: null,
+    });
   });
 
-  if (useTriangulation) {
+  const useCombined = useTriangulation || farthestWeight > 0;
+  if (useCombined) {
     const expectedValues = scores.map((item) => item.expected);
-    const triangulationValues = scores.map((item) => item.triangulation);
     const expectedNorm = normalizeValues(expectedValues);
-    const triangulationNorm = normalizeValues(triangulationValues);
+    const triangulationNorm = useTriangulation
+      ? normalizeValues(scores.map((item) => item.triangulation))
+      : [];
+    const farthestPenalty = farthestGuess
+      ? normalizeValues(scores.map((item) => item.farthestDistance)).map((value) => 1 - value)
+      : [];
+    const weightScale = 1 - farthestWeight;
+    const expectedWeight = (useTriangulation ? weights.expected : 1) * weightScale;
+    const triangulationWeight = (useTriangulation ? weights.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      item.combined = expectedNorm[idx] * weights.expected + triangulationNorm[idx] * weights.triangulation;
+      let combined = expectedNorm[idx] * expectedWeight;
+      if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
+      if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
+      item.combined = combined;
     });
   }
 
   scores.sort((a, b) => {
-    if (useTriangulation && a.combined !== b.combined) return a.combined - b.combined;
+    if (useCombined && a.combined !== b.combined) return a.combined - b.combined;
     if (a.expected !== b.expected) return a.expected - b.expected;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
+    if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
+      return b.farthestDistance - a.farthestDistance;
+    }
     return a.avgDistance - b.avgDistance;
   });
   return scores;
@@ -495,7 +521,8 @@ function filterCandidates(candidates, guesses, distances, n) {
     for (const guess of guesses) {
       const d = distances[guess.index * n + idx];
       if (Number.isFinite(guess.distanceKm)) {
-        if (Math.abs(d - guess.distanceKm) > settings.toleranceKm) return false;
+        const tolerance = guess.distanceKm === 0 ? settings.borderToleranceKm : settings.toleranceKm;
+        if (Math.abs(d - guess.distanceKm) > tolerance) return false;
       }
     }
     for (const constraint of constraints) {
@@ -582,6 +609,7 @@ function parseArgs() {
     exhaustive: args.includes('--exhaustive') || args.includes('--full'),
     maxSteps: Number(getValue('--max-steps', DEFAULT_MAX_STEPS)),
     toleranceKm: Number(getValue('--tolerance', DEFAULT_TOLERANCE_KM)),
+    borderToleranceKm: Number(getValue('--border-tolerance', DEFAULT_BORDER_TOLERANCE_KM)),
     bucketKm: Number(getValue('--bucket', DEFAULT_BUCKET_KM)),
     geoSample: Number(getValue('--geo-sample', DEFAULT_GEO_SAMPLE)),
     geoStepKm: Number(getValue('--geo-step-km', DEFAULT_GEO_STEP_KM)),
@@ -598,6 +626,7 @@ const settings = {
   exhaustive: false,
   maxSteps: DEFAULT_MAX_STEPS,
   toleranceKm: DEFAULT_TOLERANCE_KM,
+  borderToleranceKm: DEFAULT_BORDER_TOLERANCE_KM,
   bucketKm: DEFAULT_BUCKET_KM,
   geoSample: DEFAULT_GEO_SAMPLE,
   geoStepKm: DEFAULT_GEO_STEP_KM,
@@ -722,6 +751,7 @@ async function main() {
       geoSample: settings.geoSample,
       geoStepKm: settings.geoStepKm,
       toleranceKm: settings.toleranceKm,
+      borderToleranceKm: settings.borderToleranceKm,
       bucketKm: settings.bucketKm,
       maxSteps: settings.maxSteps,
       earlyStop: settings.earlyStop,
@@ -737,6 +767,7 @@ async function main() {
         triWeight2: settings.triWeight2,
         triWeight3: settings.triWeight3,
         triWeight4: settings.triWeight4,
+        farthestWeight: DEFAULT_FARTHEST_WEIGHT,
       },
     },
     heuristic: {
