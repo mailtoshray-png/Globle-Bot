@@ -794,9 +794,6 @@ function moveGuess(index, direction) {
   if (target < 0 || target >= state.guesses.length) return;
   const [guess] = state.guesses.splice(index, 1);
   state.guesses.splice(target, 0, guess);
-  if (index === 0 && target !== 0) {
-    guess.distanceKm = null;
-  }
   if (target === 0 && !Number.isFinite(guess.distanceKm)) {
     const raw = window.prompt('Enter the distance (km) for the closest guess:');
     if (raw === null) {
@@ -826,23 +823,23 @@ function rebuildOrderConstraints() {
     }
   }
   state.orderConstraints = constraints;
-  state.guesses.forEach((guess, idx) => {
-    if (idx !== 0) guess.distanceKm = null;
-  });
-  const closest = state.guesses[0];
-  state.bestDistance = closest && Number.isFinite(closest.distanceKm) ? closest.distanceKm : null;
+  const distances = state.guesses
+    .map((guess) => guess.distanceKm)
+    .filter((distance) => Number.isFinite(distance));
+  state.bestDistance = distances.length ? Math.min(...distances) : null;
 }
 
 function filterCandidates() {
   const total = state.countries.length;
   const candidates = [];
+  const distanceGuesses = state.guesses.filter((guess) => Number.isFinite(guess.distanceKm));
   for (let i = 0; i < total; i += 1) {
     let ok = true;
-    const closest = state.guesses[0];
-    if (closest && Number.isFinite(closest.distanceKm)) {
-      const d = getDistanceKm(closest.index, i);
-      if (Math.abs(d - closest.distanceKm) > DISTANCE_TOLERANCE_KM) {
+    for (const guess of distanceGuesses) {
+      const d = getDistanceKm(guess.index, i);
+      if (Math.abs(d - guess.distanceKm) > DISTANCE_TOLERANCE_KM) {
         ok = false;
+        break;
       }
     }
     if (!ok) continue;
@@ -893,9 +890,7 @@ function averageDistance(guessIndex, candidateIndices) {
 }
 
 function getClosestDistanceGuesses() {
-  const closest = state.guesses[0];
-  if (closest && Number.isFinite(closest.distanceKm)) return [closest];
-  return [];
+  return state.guesses.filter((guess) => Number.isFinite(guess.distanceKm));
 }
 
 function triangulationError(candidateIndex, closestGuesses) {

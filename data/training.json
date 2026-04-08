@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T05:32:15.505Z",
+  "generatedAt": "2026-04-08T05:58:01.075Z",
   "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
@@ -86,49 +86,49 @@
   },
   "exhaustive": {
     "best": {
-      "name": "Andorra",
-      "avgGuesses": 3.73
+      "name": "Grenada",
+      "avgGuesses": 2.59
     },
     "top": [
       {
-        "name": "Andorra",
-        "avgGuesses": 3.73
+        "name": "Grenada",
+        "avgGuesses": 2.59
       },
       {
-        "name": "Nicaragua",
-        "avgGuesses": 3.76
+        "name": "Antigua and Barbuda",
+        "avgGuesses": 2.59
       },
       {
-        "name": "Italy",
-        "avgGuesses": 3.89
+        "name": "East Timor",
+        "avgGuesses": 2.59
       },
       {
-        "name": "Uganda",
-        "avgGuesses": 3.91
+        "name": "Palau",
+        "avgGuesses": 2.59
       },
       {
-        "name": "Lebanon",
-        "avgGuesses": 3.92
+        "name": "Trinidad and Tobago",
+        "avgGuesses": 2.59
       },
       {
-        "name": "Mongolia",
-        "avgGuesses": 3.96
+        "name": "Dominica",
+        "avgGuesses": 2.6
       },
       {
-        "name": "Albania",
-        "avgGuesses": 3.98
+        "name": "Indonesia",
+        "avgGuesses": 2.61
       },
       {
-        "name": "Switzerland",
-        "avgGuesses": 3.99
+        "name": "Malaysia",
+        "avgGuesses": 2.61
       },
       {
-        "name": "Myanmar",
-        "avgGuesses": 4.01
+        "name": "Barbados",
+        "avgGuesses": 2.61
       },
       {
-        "name": "Nepal",
-        "avgGuesses": 4.01
+        "name": "Brunei",
+        "avgGuesses": 2.61
       }
     ]
   }

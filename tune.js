@@ -180,9 +180,9 @@ function simulateTarget(targetIndex, n, distances, weights, settings) {
     let insertAt = guesses.findIndex((item) => item.actualDistance > distance);
     if (insertAt === -1) insertAt = guesses.length;
     guesses.splice(insertAt, 0, guess);
-    guesses.forEach((item, itemIdx) => {
-      item.distanceKm = itemIdx === 0 ? Math.round(item.actualDistance) : null;
-    });
+    if (insertAt === 0) {
+      guess.distanceKm = Math.round(guess.actualDistance);
+    }
     bestDistance = guesses[0].actualDistance;
     if (idx === targetIndex) return true;
     candidates = filterCandidates(allIndices, guesses, distances, n, settings.toleranceKm);
