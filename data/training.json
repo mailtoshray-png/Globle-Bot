@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T17:09:32.180Z",
+  "generatedAt": "2026-04-08T21:47:54.599Z",
   "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
@@ -105,6 +105,14 @@
         "avgGuesses": 2.61
       },
       {
+        "name": "Sao Tome and Principe",
+        "avgGuesses": 2.61
+      },
+      {
+        "name": "Malaysia",
+        "avgGuesses": 2.62
+      },
+      {
         "name": "Trinidad and Tobago",
         "avgGuesses": 2.62
       },
@@ -113,24 +121,16 @@
         "avgGuesses": 2.62
       },
       {
-        "name": "Malaysia",
-        "avgGuesses": 2.62
-      },
-      {
         "name": "Palau",
         "avgGuesses": 2.62
       },
       {
         "name": "Saint Kitts and Nevis",
-        "avgGuesses": 2.63
+        "avgGuesses": 2.62
       },
       {
         "name": "Saint Vincent and the Grenadines",
         "avgGuesses": 2.63
-      },
-      {
-        "name": "Barbados",
-        "avgGuesses": 2.64
       }
     ]
   }

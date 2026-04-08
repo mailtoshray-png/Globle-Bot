@@ -550,14 +550,11 @@ function simulateTarget(targetIndex, countries, distances, startIndex = null) {
     const guess = {
       index: idx,
       actualDistance: distance,
-      distanceKm: null,
+      distanceKm: Math.round(distance),
     };
     let insertAt = guesses.findIndex((item) => item.actualDistance > distance);
     if (insertAt === -1) insertAt = guesses.length;
     guesses.splice(insertAt, 0, guess);
-    if (insertAt === 0) {
-      guess.distanceKm = Math.round(guess.actualDistance);
-    }
     bestDistance = guesses[0].actualDistance;
     if (idx === targetIndex) return true;
     candidates = filterCandidates(allIndices, guesses, distances, n);

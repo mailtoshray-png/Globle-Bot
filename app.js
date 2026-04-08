@@ -689,15 +689,6 @@ function addGuess() {
     }
   }
 
-  if (rank === 1 && distanceKm === null) {
-    alert('Enter the distance when the guess is closest (rank 1).');
-    return;
-  }
-  if (rank > 1 && distanceKm !== null) {
-    alert('Only enter distance for the closest guess (rank 1).');
-    return;
-  }
-
   const guess = {
     id: state.nextGuessId,
     index: countryIndex,
@@ -796,22 +787,6 @@ function moveGuess(index, direction) {
   if (target < 0 || target >= state.guesses.length) return;
   const [guess] = state.guesses.splice(index, 1);
   state.guesses.splice(target, 0, guess);
-  if (target === 0 && !Number.isFinite(guess.distanceKm)) {
-    const raw = window.prompt('Enter the distance (km) for the closest guess:');
-    if (raw === null) {
-      state.guesses.splice(target, 1);
-      state.guesses.splice(index, 0, guess);
-      return;
-    }
-    const parsed = Math.round(Number(raw));
-    if (!Number.isFinite(parsed) || parsed < 0) {
-      alert('Distance must be a non-negative number.');
-      state.guesses.splice(target, 1);
-      state.guesses.splice(index, 0, guess);
-      return;
-    }
-    guess.distanceKm = parsed;
-  }
   rebuildOrderConstraints();
   renderGuesses();
   recompute();
