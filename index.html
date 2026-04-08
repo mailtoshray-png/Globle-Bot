@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globle Bot</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbit"></div>
+  <main class="app">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Trainwreck Labs Helper</p>
+        <h1>Globle Bot</h1>
+        <p class="subhead">Turn Globle feedback into a sharper next guess. Add each guess and place it in the closest-to-farthest order. If a guess is closest, enter its distance.</p>
+      </div>
+      <div class="status" id="data-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="status-text">Loading map data...</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div class="panel controls">
+        <div class="panel-header">
+          <h2>Guess Input</h2>
+          <p>Enter a country and place it in the closest-to-farthest order. If it’s closest, enter its distance.</p>
+        </div>
+
+        <label class="field">
+          <span>Country guess</span>
+          <input id="country-input" list="country-list" placeholder="Type a country" />
+          <datalist id="country-list"></datalist>
+        </label>
+
+        <label class="field inline">
+          <span>Rank (1 = closest)</span>
+          <input id="rank-input" type="number" min="1" step="1" placeholder="auto" />
+        </label>
+
+        <div class="field">
+          <span>Distance to target (km)</span>
+          <input id="distance-input" type="number" min="0" step="1" placeholder="e.g. 2450" />
+          <span class="helper">Only required when the guess is closest (rank 1). 0 means right on the border.</span>
+        </div>
+
+        <div class="button-row">
+          <button id="add-guess" class="primary">Add Guess</button>
+          <button id="undo-guess" class="ghost">Undo</button>
+          <button id="reset-guesses" class="ghost">Reset</button>
+        </div>
+
+        <div class="panel-section">
+          <h3>Guess History</h3>
+          <div id="guess-list" class="guess-list"></div>
+        </div>
+      </div>
+
+      <div class="panel results">
+        <div class="panel-header">
+          <h2>Next Best Guess</h2>
+          <p id="candidate-count">Waiting for guesses...</p>
+        </div>
+
+        <div class="map" id="map"></div>
+
+        <div class="next-guess" id="next-guess">
+          <div>
+            <p class="eyebrow">Recommended</p>
+            <h3 id="next-guess-name">-</h3>
+            <p id="next-guess-score" class="muted"></p>
+          </div>
+          <div class="score-pill" id="next-guess-score-pill">-</div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Top Suggestions</h3>
+          <div id="top-suggestions" class="suggestion-list"></div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Training Snapshot</h3>
+          <div id="training-summary" class="training-summary"></div>
+          <div id="training-list" class="suggestion-list"></div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Remaining Candidates</h3>
+          <div id="remaining-list" class="candidate-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

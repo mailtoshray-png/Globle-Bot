@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-04-07T23:14:55.358Z",
+  "countriesCount": 195,
+  "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
+  "settings": {
+    "exhaustive": true,
+    "useGeo": true,
+    "geoSample": 0,
+    "geoStepKm": 10,
+    "toleranceKm": 100,
+    "bucketKm": 100,
+    "maxSteps": 20,
+    "earlyStop": false,
+    "geoMatched": 165,
+    "exportDistances": true,
+    "triWeight2": 0,
+    "triWeight3": 0,
+    "triWeight4": 0
+  },
+  "strategy": {
+    "triangulationMinGuesses": 2,
+    "weights": {
+      "triWeight2": 0,
+      "triWeight3": 0,
+      "triWeight4": 0
+    }
+  },
+  "heuristic": {
+    "best": {
+      "name": "Saint Vincent and the Grenadines",
+      "expectedRemaining": 2.15,
+      "avgDistanceKm": 8835
+    },
+    "top": [
+      {
+        "name": "Saint Vincent and the Grenadines",
+        "expectedRemaining": 2.15,
+        "avgDistanceKm": 8835
+      },
+      {
+        "name": "Barbados",
+        "expectedRemaining": 2.19,
+        "avgDistanceKm": 8746
+      },
+      {
+        "name": "Grenada",
+        "expectedRemaining": 2.21,
+        "avgDistanceKm": 8885
+      },
+      {
+        "name": "Indonesia",
+        "expectedRemaining": 2.23,
+        "avgDistanceKm": 8365
+      },
+      {
+        "name": "Saint Lucia",
+        "expectedRemaining": 2.24,
+        "avgDistanceKm": 8788
+      },
+      {
+        "name": "Palau",
+        "expectedRemaining": 2.32,
+        "avgDistanceKm": 11117
+      },
+      {
+        "name": "Dominica",
+        "expectedRemaining": 2.33,
+        "avgDistanceKm": 8757
+      },
+      {
+        "name": "East Timor",
+        "expectedRemaining": 2.33,
+        "avgDistanceKm": 10760
+      },
+      {
+        "name": "Antigua and Barbuda",
+        "expectedRemaining": 2.34,
+        "avgDistanceKm": 8718
+      },
+      {
+        "name": "Malaysia",
+        "expectedRemaining": 2.35,
+        "avgDistanceKm": 8763
+      }
+    ]
+  },
+  "exhaustive": {
+    "best": {
+      "name": "Holy See (Vatican City State)",
+      "avgGuesses": 3.33
+    },
+    "top": [
+      {
+        "name": "Holy See (Vatican City State)",
+        "avgGuesses": 3.33
+      },
+      {
+        "name": "Andorra",
+        "avgGuesses": 3.73
+      },
+      {
+        "name": "Nicaragua",
+        "avgGuesses": 3.76
+      },
+      {
+        "name": "Grenada",
+        "avgGuesses": 3.77
+      },
+      {
+        "name": "Barbados",
+        "avgGuesses": 3.84
+      },
+      {
+        "name": "Seychelles",
+        "avgGuesses": 3.91
+      },
+      {
+        "name": "Myanmar",
+        "avgGuesses": 3.92
+      },
+      {
+        "name": "Lebanon",
+        "avgGuesses": 3.93
+      },
+      {
+        "name": "Mongolia",
+        "avgGuesses": 3.95
+      },
+      {
+        "name": "Saint Vincent and the Grenadines",
+        "avgGuesses": 3.95
+      }
+    ]
+  }
+}
