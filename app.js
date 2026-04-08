@@ -1,10 +1,12 @@
 const COUNTRY_SOURCES = [
+  'data/countries.json',
   '/api/countries',
   'https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-geo-coordinates.json',
   'https://raw.githubusercontent.com/eesur/country-codes-lat-long/master/country-codes-lat-long-alpha3.json',
 ];
 
 const GEOJSON_SOURCES = [
+  'data/countries.geojson',
   '/api/geojson',
   'https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson',
   'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json',
@@ -33,7 +35,7 @@ const FALLBACK_COUNTRIES = [
   { name: 'Turkey', lat: 38.9637, lon: 35.2433 },
 ];
 
-const SOVEREIGN_SOURCE = '/data/sovereign-countries.json';
+const SOVEREIGN_SOURCE = 'data/sovereign-countries.json';
 
 const DISTANCE_TOLERANCE_KM = 100;
 const DISTANCE_BUCKET_KM = 100;
@@ -540,43 +542,53 @@ function updateMap(candidates, bestIndex) {
 }
 
 async function loadDistances() {
-  try {
-    const response = await fetch('/api/distances', { cache: 'no-store' });
-    if (!response.ok) throw new Error('no distances');
-    const payload = await response.json();
-    if (!payload || !Array.isArray(payload.countries) || !Array.isArray(payload.matrix)) {
-      throw new Error('invalid distances');
-    }
-    const n = state.countries.length;
-    if (payload.countries.length !== n || payload.matrix.length !== n * n) {
-      throw new Error('distance mismatch');
-    }
-    for (let i = 0; i < n; i += 1) {
-      if (simplifyName(payload.countries[i]) !== simplifyName(state.countries[i].name)) {
-        throw new Error('distance order mismatch');
+  const sources = ['data/distances.json', '/api/distances'];
+  for (const source of sources) {
+    try {
+      const response = await fetch(source, { cache: 'no-store' });
+      if (!response.ok) throw new Error('no distances');
+      const payload = await response.json();
+      if (!payload || !Array.isArray(payload.countries) || !Array.isArray(payload.matrix)) {
+        throw new Error('invalid distances');
       }
+      const n = state.countries.length;
+      if (payload.countries.length !== n || payload.matrix.length !== n * n) {
+        throw new Error('distance mismatch');
+      }
+      for (let i = 0; i < n; i += 1) {
+        if (simplifyName(payload.countries[i]) !== simplifyName(state.countries[i].name)) {
+          throw new Error('distance order mismatch');
+        }
+      }
+      state.distanceMatrix = Float32Array.from(payload.matrix);
+      state.distanceCache.clear();
+      return;
+    } catch (error) {
+      // try next source
     }
-    state.distanceMatrix = Float32Array.from(payload.matrix);
-    state.distanceCache.clear();
-  } catch (error) {
-    state.distanceMatrix = null;
   }
+  state.distanceMatrix = null;
 }
 
 async function loadTraining() {
-  try {
-    const response = await fetch('/api/training', { cache: 'no-store' });
-    if (!response.ok) throw new Error('no training');
-    const payload = await response.json();
-    state.training = payload;
-    renderTraining();
-    if (state.countries.length) {
-      recompute();
+  const sources = ['data/training.json', '/api/training'];
+  for (const source of sources) {
+    try {
+      const response = await fetch(source, { cache: 'no-store' });
+      if (!response.ok) throw new Error('no training');
+      const payload = await response.json();
+      state.training = payload;
+      renderTraining();
+      if (state.countries.length) {
+        recompute();
+      }
+      return;
+    } catch (error) {
+      // try next source
     }
-  } catch (error) {
-    state.training = null;
-    renderTraining();
   }
+  state.training = null;
+  renderTraining();
 }
 
 function renderTraining() {
