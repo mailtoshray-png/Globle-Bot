@@ -37,14 +37,15 @@ const FALLBACK_COUNTRIES = [
 
 const SOVEREIGN_SOURCE = 'data/sovereign-countries.json';
 
-const DISTANCE_TOLERANCE_KM = 100;
-const BORDER_TOLERANCE_KM = 25;
+const DISTANCE_TOLERANCE_KM = 25;
+const BORDER_TOLERANCE_KM = 0;
 const DISTANCE_BUCKET_KM = 100;
 const ORDER_TOLERANCE_KM = 0;
 const TRIANGULATION_MIN_GUESSES = 2;
 const DEFAULT_TRI_WEIGHT_2 = 0.4;
 const DEFAULT_TRI_WEIGHT_3 = 0.5;
 const DEFAULT_TRI_WEIGHT_4 = 0.6;
+const DEFAULT_AVG_WORST_WEIGHT = 0.7;
 const DEFAULT_FARTHEST_WEIGHT = 0.2;
 
 const aliasCandidates = [
@@ -617,12 +618,18 @@ function renderTraining() {
   const metaParts = [];
   if (exhaustive) {
     metaParts.push(`Avg guesses: ${best.avgGuesses}`);
+    if (best.worstGuesses !== undefined) {
+      metaParts.push(`Worst: ${best.worstGuesses}`);
+    }
   } else if (best.expectedRemaining !== undefined) {
     metaParts.push(`Expected remaining: ${best.expectedRemaining}`);
   }
   if (settings.useGeo) {
     metaParts.push(`Geo sample: ${settings.geoSample}`);
     if (settings.geoMatched) metaParts.push(`Matched: ${settings.geoMatched}`);
+  }
+  if (training.strategy?.weights?.avgWorstWeight !== undefined) {
+    metaParts.push(`Avg/Worst weight: ${training.strategy.weights.avgWorstWeight}`);
   }
   metaParts.push(`Countries: ${training.countriesCount}`);
 
@@ -645,7 +652,7 @@ function renderTraining() {
     const score = document.createElement('div');
     score.className = 'score';
     score.textContent = exhaustive
-      ? `Avg guesses ${Number(item.avgGuesses).toFixed(2)}`
+      ? `Avg ${Number(item.avgGuesses).toFixed(2)} | Worst ${item.worstGuesses ?? '-'}`
       : `Exp. remaining ${Number(item.expectedRemaining).toFixed(2)}`;
     card.appendChild(name);
     card.appendChild(score);
@@ -834,7 +841,7 @@ function filterCandidates() {
   return candidates;
 }
 
-function expectedRemainingSize(guessIndex, candidateIndices) {
+function expectedRemainingStats(guessIndex, candidateIndices) {
   const bestDistance = state.bestDistance ?? Infinity;
   const threshold = bestDistance - DISTANCE_TOLERANCE_KM;
   const counts = new Map();
@@ -852,11 +859,13 @@ function expectedRemainingSize(guessIndex, candidateIndices) {
 
   const n = candidateIndices.length;
   let expected = 0;
+  let worst = notCloserCount;
   counts.forEach((count) => {
     expected += (count * count) / n;
+    if (count > worst) worst = count;
   });
   expected += (notCloserCount * notCloserCount) / n;
-  return expected;
+  return { expected, worst };
 }
 
 function averageDistance(guessIndex, candidateIndices) {
@@ -908,22 +917,41 @@ function rankSuggestions(candidateIndices, guessPool = null) {
   const closestGuesses = getClosestDistanceGuesses();
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weights = getTriangulationWeights(closestGuesses.length);
+  const avgWorstWeight = state.training?.strategy?.weights?.avgWorstWeight ?? DEFAULT_AVG_WORST_WEIGHT;
   const farthestGuess = state.guesses.length > 1 ? state.guesses[state.guesses.length - 1] : null;
   const farthestWeight = farthestGuess
     ? state.training?.strategy?.weights?.farthestWeight ?? DEFAULT_FARTHEST_WEIGHT
     : 0;
   const scores = pool.map((idx) => {
-    const expected = expectedRemainingSize(idx, candidateIndices);
+    const stats = expectedRemainingStats(idx, candidateIndices);
+    const expected = stats.expected;
+    const worst = stats.worst;
     const avgDistance = averageDistance(idx, candidateIndices);
     const triangulation = useTriangulation ? triangulationError(idx, closestGuesses) : null;
     const farthestDistance = farthestGuess ? getDistanceKm(idx, farthestGuess.index) : null;
-    return { index: idx, expected, avgDistance, triangulation, farthestDistance, combined: null };
+    return {
+      index: idx,
+      expected,
+      worst,
+      avgDistance,
+      triangulation,
+      farthestDistance,
+      combined: null,
+      baseScore: null,
+    };
+  });
+
+  const expectedValues = scores.map((item) => item.expected);
+  const worstValues = scores.map((item) => item.worst);
+  const expectedNorm = normalizeValues(expectedValues);
+  const worstNorm = normalizeValues(worstValues);
+  const baseScores = expectedNorm.map((value, idx) => value * avgWorstWeight + worstNorm[idx] * (1 - avgWorstWeight));
+  scores.forEach((item, idx) => {
+    item.baseScore = baseScores[idx];
   });
 
   const useCombined = useTriangulation || farthestWeight > 0;
   if (useCombined) {
-    const expectedValues = scores.map((item) => item.expected);
-    const expectedNorm = normalizeValues(expectedValues);
     const triangulationNorm = useTriangulation
       ? normalizeValues(scores.map((item) => item.triangulation))
       : [];
@@ -934,7 +962,7 @@ function rankSuggestions(candidateIndices, guessPool = null) {
     const expectedWeight = (useTriangulation ? weights.expected : 1) * weightScale;
     const triangulationWeight = (useTriangulation ? weights.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      let combined = expectedNorm[idx] * expectedWeight;
+      let combined = baseScores[idx] * expectedWeight;
       if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
       if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
       item.combined = combined;
@@ -943,9 +971,18 @@ function rankSuggestions(candidateIndices, guessPool = null) {
       expected: expectedWeight,
       triangulation: triangulationWeight,
       farthest: farthestWeight,
+      avgWorst: avgWorstWeight,
     };
   } else {
-    state.rankWeights = null;
+    scores.forEach((item, idx) => {
+      item.combined = baseScores[idx];
+    });
+    state.rankWeights = {
+      expected: 1,
+      triangulation: 0,
+      farthest: 0,
+      avgWorst: avgWorstWeight,
+    };
   }
 
   scores.sort((a, b) => {
@@ -953,6 +990,7 @@ function rankSuggestions(candidateIndices, guessPool = null) {
       return a.combined - b.combined;
     }
     if (a.expected !== b.expected) return a.expected - b.expected;
+    if (a.worst !== b.worst) return a.worst - b.worst;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
     if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
       return b.farthestDistance - a.farthestDistance;
@@ -978,7 +1016,7 @@ function formatCombinedLabel(item) {
   if (item.combined === null) return '';
   const weights = state.rankWeights;
   const weightLabel = weights
-    ? `(${Math.round(weights.expected * 100)}% exp / ${Math.round(weights.triangulation * 100)}% tri / ${Math.round((weights.farthest || 0) * 100)}% far)`
+    ? `(${Math.round(weights.expected * 100)}% base / ${Math.round(weights.triangulation * 100)}% tri / ${Math.round((weights.farthest || 0) * 100)}% far | avg ${Math.round((weights.avgWorst ?? DEFAULT_AVG_WORST_WEIGHT) * 100)}%)`
     : '';
   return `Combined score: ${item.combined.toFixed(3)} ${weightLabel}`.trim();
 }

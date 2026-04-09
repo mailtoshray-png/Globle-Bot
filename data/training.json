@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T21:47:54.599Z",
+  "generatedAt": "2026-04-09T01:24:45.883Z",
   "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
@@ -7,13 +7,18 @@
     "useGeo": true,
     "geoSample": 0,
     "geoStepKm": 10,
-    "toleranceKm": 100,
-    "borderToleranceKm": 25,
+    "toleranceKm": 25,
+    "borderToleranceKm": 0,
     "bucketKm": 100,
     "maxSteps": 20,
     "earlyStop": false,
     "geoMatched": 165,
     "exportDistances": true,
+    "avgWorstWeight": 0.55,
+    "avgWorstSweep": true,
+    "avgWorstMin": 0.55,
+    "avgWorstMax": 0.95,
+    "avgWorstStep": 0.01,
     "triWeight2": 0,
     "triWeight3": 0,
     "triWeight4": 0
@@ -24,7 +29,8 @@
       "triWeight2": 0,
       "triWeight3": 0,
       "triWeight4": 0,
-      "farthestWeight": 0.2
+      "farthestWeight": 0.2,
+      "avgWorstWeight": 0.55
     }
   },
   "heuristic": {
@@ -88,49 +94,71 @@
   },
   "exhaustive": {
     "best": {
-      "name": "Antigua and Barbuda",
-      "avgGuesses": 2.6
+      "name": "Grenada",
+      "avgGuesses": 2.22,
+      "worstGuesses": 3,
+      "score": 2.57
     },
     "top": [
       {
-        "name": "Antigua and Barbuda",
-        "avgGuesses": 2.6
-      },
-      {
-        "name": "Dominica",
-        "avgGuesses": 2.61
-      },
-      {
         "name": "Grenada",
-        "avgGuesses": 2.61
+        "avgGuesses": 2.22,
+        "worstGuesses": 3,
+        "score": 2.57
       },
       {
-        "name": "Sao Tome and Principe",
-        "avgGuesses": 2.61
+        "name": "Antigua and Barbuda",
+        "avgGuesses": 2.22,
+        "worstGuesses": 3,
+        "score": 2.57
       },
       {
-        "name": "Malaysia",
-        "avgGuesses": 2.62
+        "name": "Liechtenstein",
+        "avgGuesses": 2.23,
+        "worstGuesses": 3,
+        "score": 2.58
       },
       {
-        "name": "Trinidad and Tobago",
-        "avgGuesses": 2.62
-      },
-      {
-        "name": "Brunei",
-        "avgGuesses": 2.62
-      },
-      {
-        "name": "Palau",
-        "avgGuesses": 2.62
-      },
-      {
-        "name": "Saint Kitts and Nevis",
-        "avgGuesses": 2.62
+        "name": "Indonesia",
+        "avgGuesses": 2.24,
+        "worstGuesses": 3,
+        "score": 2.58
       },
       {
         "name": "Saint Vincent and the Grenadines",
-        "avgGuesses": 2.63
+        "avgGuesses": 2.24,
+        "worstGuesses": 3,
+        "score": 2.58
+      },
+      {
+        "name": "Bahamas",
+        "avgGuesses": 2.25,
+        "worstGuesses": 3,
+        "score": 2.59
+      },
+      {
+        "name": "Dominica",
+        "avgGuesses": 2.25,
+        "worstGuesses": 3,
+        "score": 2.59
+      },
+      {
+        "name": "Palau",
+        "avgGuesses": 2.25,
+        "worstGuesses": 3,
+        "score": 2.59
+      },
+      {
+        "name": "Singapore",
+        "avgGuesses": 2.25,
+        "worstGuesses": 3,
+        "score": 2.59
+      },
+      {
+        "name": "Barbados",
+        "avgGuesses": 2.26,
+        "worstGuesses": 3,
+        "score": 2.59
       }
     ]
   }

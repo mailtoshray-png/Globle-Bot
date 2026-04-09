@@ -5,8 +5,8 @@ const DATA_DIR = path.join(__dirname, 'data');
 const COUNTRIES_PATH = path.join(DATA_DIR, 'countries.json');
 const DISTANCES_PATH = path.join(DATA_DIR, 'distances.json');
 
-const DEFAULT_TOLERANCE_KM = 100;
-const DEFAULT_BORDER_TOLERANCE_KM = 25;
+const DEFAULT_TOLERANCE_KM = 25;
+const DEFAULT_BORDER_TOLERANCE_KM = 0;
 const DEFAULT_BUCKET_KM = 100;
 const DEFAULT_MAX_STEPS = 20;
 const DEFAULT_COARSE_STEP = 0.1;
@@ -19,6 +19,7 @@ const DEFAULT_DEEP_STEP = 0.001;
 const DEFAULT_DEEP_LOG_EVERY = 500;
 const TRIANGULATION_MIN_GUESSES = 2;
 const DEFAULT_FARTHEST_WEIGHT = 0.2;
+const DEFAULT_AVG_WORST_WEIGHT = 0.7;
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -63,7 +64,7 @@ function getTriWeights(count, weights) {
   return { expected: 1 - clamped, triangulation: clamped };
 }
 
-function expectedRemainingSize(guessIndex, candidateIndices, bestDistance, distances, n, bucketKm, toleranceKm) {
+function expectedRemainingStats(guessIndex, candidateIndices, bestDistance, distances, n, bucketKm, toleranceKm) {
   const threshold = bestDistance - toleranceKm;
   const counts = new Map();
   let notCloserCount = 0;
@@ -80,11 +81,13 @@ function expectedRemainingSize(guessIndex, candidateIndices, bestDistance, dista
 
   const total = candidateIndices.length;
   let expected = 0;
+  let worst = notCloserCount;
   counts.forEach((count) => {
     expected += (count * count) / total;
+    if (count > worst) worst = count;
   });
   expected += (notCloserCount * notCloserCount) / total;
-  return expected;
+  return { expected, worst };
 }
 
 function triangulationError(guessIndex, closestGuesses, distances, n) {
@@ -131,13 +134,16 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
   const closestGuesses = guesses.filter((guess) => Number.isFinite(guess.distanceKm));
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weightConfig = getTriWeights(closestGuesses.length, weights);
+  const avgWorstWeight = DEFAULT_AVG_WORST_WEIGHT;
   const farthestGuess = guesses.length > 1 ? guesses[guesses.length - 1] : null;
   const farthestWeight = farthestGuess ? DEFAULT_FARTHEST_WEIGHT : 0;
 
   const scores = [];
   candidateIndices.forEach((idx) => {
     if (guessedSet.has(idx)) return;
-    const expected = expectedRemainingSize(idx, candidateIndices, bestDistance, distances, n, bucketKm, toleranceKm);
+    const stats = expectedRemainingStats(idx, candidateIndices, bestDistance, distances, n, bucketKm, toleranceKm);
+    const expected = stats.expected;
+    const worst = stats.worst;
     let avgDistance = 0;
     candidateIndices.forEach((targetIdx) => {
       avgDistance += distances[idx * n + targetIdx];
@@ -147,12 +153,18 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
       ? triangulationError(idx, closestGuesses, distances, n)
       : null;
     const farthestDistance = farthestGuess ? distances[idx * n + farthestGuess.index] : null;
-    scores.push({ index: idx, expected, avgDistance, triangulation, farthestDistance, combined: null });
+    scores.push({ index: idx, expected, worst, avgDistance, triangulation, farthestDistance, combined: null, baseScore: null });
+  });
+
+  const expectedNorm = normalizeValues(scores.map((item) => item.expected));
+  const worstNorm = normalizeValues(scores.map((item) => item.worst));
+  const baseScores = expectedNorm.map((value, idx) => value * avgWorstWeight + worstNorm[idx] * (1 - avgWorstWeight));
+  scores.forEach((item, idx) => {
+    item.baseScore = baseScores[idx];
   });
 
   const useCombined = useTriangulation || farthestWeight > 0;
   if (useCombined) {
-    const expectedNorm = normalizeValues(scores.map((item) => item.expected));
     const triangulationNorm = useTriangulation
       ? normalizeValues(scores.map((item) => item.triangulation))
       : [];
@@ -163,16 +175,21 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
     const expectedWeight = (useTriangulation ? weightConfig.expected : 1) * weightScale;
     const triangulationWeight = (useTriangulation ? weightConfig.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      let combined = expectedNorm[idx] * expectedWeight;
+      let combined = baseScores[idx] * expectedWeight;
       if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
       if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
       item.combined = combined;
+    });
+  } else {
+    scores.forEach((item, idx) => {
+      item.combined = baseScores[idx];
     });
   }
 
   scores.sort((a, b) => {
     if (useCombined && a.combined !== b.combined) return a.combined - b.combined;
     if (a.expected !== b.expected) return a.expected - b.expected;
+    if (a.worst !== b.worst) return a.worst - b.worst;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
     if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
       return b.farthestDistance - a.farthestDistance;

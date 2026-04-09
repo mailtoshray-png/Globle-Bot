@@ -31,8 +31,8 @@ const FALLBACK_COUNTRIES = [
   { name: 'Turkey', lat: 38.9637, lon: 35.2433 },
 ];
 
-const DEFAULT_TOLERANCE_KM = 100;
-const DEFAULT_BORDER_TOLERANCE_KM = 25;
+const DEFAULT_TOLERANCE_KM = 25;
+const DEFAULT_BORDER_TOLERANCE_KM = 0;
 const DEFAULT_BUCKET_KM = 100;
 const DEFAULT_MAX_STEPS = 12;
 const DEFAULT_GEO_SAMPLE = 60;
@@ -41,7 +41,11 @@ const TRIANGULATION_MIN_GUESSES = 2;
 const DEFAULT_TRI_WEIGHT_2 = 0.4;
 const DEFAULT_TRI_WEIGHT_3 = 0.5;
 const DEFAULT_TRI_WEIGHT_4 = 0.6;
+const DEFAULT_AVG_WORST_WEIGHT = 0.7;
 const DEFAULT_FARTHEST_WEIGHT = 0.2;
+const DEFAULT_AVG_WORST_MIN = 0.55;
+const DEFAULT_AVG_WORST_MAX = 0.95;
+const DEFAULT_AVG_WORST_STEP = 0.01;
 const EARTH_RADIUS_KM = 6371;
 const LOCAL_CACHE_PATH = path.join(__dirname, 'data', 'countries.json');
 const SOVEREIGN_PATH = path.join(__dirname, 'data', 'sovereign-countries.json');
@@ -394,7 +398,7 @@ function buildDistanceMatrix(countries, geoPoints) {
   return matrix;
 }
 
-function expectedRemainingSize(guessIndex, candidateIndices, bestDistance, distances, n) {
+function expectedRemainingStats(guessIndex, candidateIndices, bestDistance, distances, n) {
   const threshold = bestDistance - settings.toleranceKm;
   const counts = new Map();
   let notCloserCount = 0;
@@ -411,11 +415,13 @@ function expectedRemainingSize(guessIndex, candidateIndices, bestDistance, dista
 
   const total = candidateIndices.length;
   let expected = 0;
+  let worst = notCloserCount;
   counts.forEach((count) => {
     expected += (count * count) / total;
+    if (count > worst) worst = count;
   });
   expected += (notCloserCount * notCloserCount) / total;
-  return expected;
+  return { expected, worst };
 }
 
 function triangulationError(guessIndex, closestGuesses, distances, n) {
@@ -452,11 +458,14 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
   const closestGuesses = guesses.filter((guess) => Number.isFinite(guess.distanceKm));
   const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
   const weights = getTriangulationWeights(closestGuesses.length);
+  const avgWorstWeight = settings.avgWorstWeight;
   const farthestGuess = guesses.length > 1 ? guesses[guesses.length - 1] : null;
   const farthestWeight = farthestGuess ? DEFAULT_FARTHEST_WEIGHT : 0;
   candidateIndices.forEach((idx) => {
     if (guessedSet.has(idx)) return;
-    const expected = expectedRemainingSize(idx, candidateIndices, bestDistance, distances, n);
+    const stats = expectedRemainingStats(idx, candidateIndices, bestDistance, distances, n);
+    const expected = stats.expected;
+    const worst = stats.worst;
     let avgDistance = 0;
     candidateIndices.forEach((targetIdx) => {
       avgDistance += distances[idx * n + targetIdx];
@@ -469,17 +478,26 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
     scores.push({
       index: idx,
       expected,
+      worst,
       avgDistance,
       triangulation,
       farthestDistance,
       combined: null,
+      baseScore: null,
     });
+  });
+
+  const expectedValues = scores.map((item) => item.expected);
+  const worstValues = scores.map((item) => item.worst);
+  const expectedNorm = normalizeValues(expectedValues);
+  const worstNorm = normalizeValues(worstValues);
+  const baseScores = expectedNorm.map((value, idx) => value * avgWorstWeight + worstNorm[idx] * (1 - avgWorstWeight));
+  scores.forEach((item, idx) => {
+    item.baseScore = baseScores[idx];
   });
 
   const useCombined = useTriangulation || farthestWeight > 0;
   if (useCombined) {
-    const expectedValues = scores.map((item) => item.expected);
-    const expectedNorm = normalizeValues(expectedValues);
     const triangulationNorm = useTriangulation
       ? normalizeValues(scores.map((item) => item.triangulation))
       : [];
@@ -490,16 +508,21 @@ function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSe
     const expectedWeight = (useTriangulation ? weights.expected : 1) * weightScale;
     const triangulationWeight = (useTriangulation ? weights.triangulation : 0) * weightScale;
     scores.forEach((item, idx) => {
-      let combined = expectedNorm[idx] * expectedWeight;
+      let combined = baseScores[idx] * expectedWeight;
       if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
       if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
       item.combined = combined;
+    });
+  } else {
+    scores.forEach((item, idx) => {
+      item.combined = baseScores[idx];
     });
   }
 
   scores.sort((a, b) => {
     if (useCombined && a.combined !== b.combined) return a.combined - b.combined;
     if (a.expected !== b.expected) return a.expected - b.expected;
+    if (a.worst !== b.worst) return a.worst - b.worst;
     if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
     if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
       return b.farthestDistance - a.farthestDistance;
@@ -580,19 +603,58 @@ function simulateTarget(targetIndex, countries, distances, startIndex = null) {
 function evaluateStartIndex(startIndex, countries, distances) {
   const n = countries.length;
   let total = 0;
+  let worst = 0;
   for (let targetIdx = 0; targetIdx < n; targetIdx += 1) {
     const guesses = simulateTarget(targetIdx, countries, distances, startIndex);
     total += guesses;
+    if (guesses > worst) worst = guesses;
 
     if (settings.earlyStop) {
       const remaining = n - targetIdx - 1;
       const bestPossible = (total + remaining * 1) / n;
       if (bestPossible >= settings.bestAvg) {
-        return { avg: Infinity, aborted: true };
+        return { avg: Infinity, worst: Infinity, aborted: true };
       }
     }
   }
-  return { avg: total / n, aborted: false };
+  return { avg: total / n, worst, aborted: false };
+}
+
+function evaluatePolicy(countries, distances) {
+  const n = countries.length;
+  let total = 0;
+  let worst = 0;
+  for (let targetIdx = 0; targetIdx < n; targetIdx += 1) {
+    const guesses = simulateTarget(targetIdx, countries, distances);
+    total += guesses;
+    if (guesses > worst) worst = guesses;
+  }
+  return { avg: total / n, worst };
+}
+
+function sweepAvgWorstWeights(countries, distances) {
+  const results = [];
+  for (
+    let weight = settings.avgWorstMin;
+    weight <= settings.avgWorstMax + 1e-9;
+    weight += settings.avgWorstStep
+  ) {
+    const rounded = Math.round(weight * 1000) / 1000;
+    settings.avgWorstWeight = rounded;
+    const { avg, worst } = evaluatePolicy(countries, distances);
+    const score = avg + worst;
+    results.push({ weight: rounded, avg, worst, score });
+    console.log(`Avg/Worst weight ${rounded.toFixed(3)} -> avg ${avg.toFixed(2)} worst ${worst} score ${score.toFixed(2)}`);
+  }
+
+  results.sort((a, b) => {
+    if (a.score !== b.score) return a.score - b.score;
+    if (a.avg !== b.avg) return a.avg - b.avg;
+    return a.worst - b.worst;
+  });
+
+  const best = results[0];
+  return { best, results };
 }
 
 function parseArgs() {
@@ -613,6 +675,11 @@ function parseArgs() {
     triWeight2: Number(getValue('--tri-weight-2', DEFAULT_TRI_WEIGHT_2)),
     triWeight3: Number(getValue('--tri-weight-3', DEFAULT_TRI_WEIGHT_3)),
     triWeight4: Number(getValue('--tri-weight-4', DEFAULT_TRI_WEIGHT_4)),
+    avgWorstWeight: Number(getValue('--avg-worst-weight', DEFAULT_AVG_WORST_WEIGHT)),
+    avgWorstSweep: args.includes('--avg-worst-sweep'),
+    avgWorstMin: Number(getValue('--avg-worst-min', DEFAULT_AVG_WORST_MIN)),
+    avgWorstMax: Number(getValue('--avg-worst-max', DEFAULT_AVG_WORST_MAX)),
+    avgWorstStep: Number(getValue('--avg-worst-step', DEFAULT_AVG_WORST_STEP)),
     useGeo: args.includes('--accurate') || args.includes('--use-geo'),
     noEarlyStop: args.includes('--no-early-stop'),
     exportDistances: !args.includes('--no-export-distances'),
@@ -630,6 +697,11 @@ const settings = {
   triWeight2: DEFAULT_TRI_WEIGHT_2,
   triWeight3: DEFAULT_TRI_WEIGHT_3,
   triWeight4: DEFAULT_TRI_WEIGHT_4,
+  avgWorstWeight: DEFAULT_AVG_WORST_WEIGHT,
+  avgWorstSweep: false,
+  avgWorstMin: DEFAULT_AVG_WORST_MIN,
+  avgWorstMax: DEFAULT_AVG_WORST_MAX,
+  avgWorstStep: DEFAULT_AVG_WORST_STEP,
   useGeo: false,
   noEarlyStop: false,
   exportDistances: true,
@@ -667,6 +739,16 @@ async function main() {
   const distances = buildDistanceMatrix(countries, geoPoints);
   const n = countries.length;
   const allIndices = Array.from({ length: n }, (_, i) => i);
+  let avgWorstSweepResult = null;
+
+  if (settings.avgWorstSweep) {
+    console.log('Sweeping avg/worst weights...');
+    avgWorstSweepResult = sweepAvgWorstWeights(countries, distances);
+    settings.avgWorstWeight = avgWorstSweepResult.best.weight;
+    console.log(
+      `Selected avg/worst weight ${settings.avgWorstWeight.toFixed(3)} (avg ${avgWorstSweepResult.best.avg.toFixed(2)} worst ${avgWorstSweepResult.best.worst})`,
+    );
+  }
 
   const rankedStart = rankSuggestions(allIndices, Infinity, distances, n, new Set());
   if (!rankedStart.length) {
@@ -693,40 +775,58 @@ async function main() {
     console.log('Running exhaustive start sweep... (this can be slow)');
     let bestIndex = null;
     let bestAvg = Infinity;
+    let bestWorst = Infinity;
+    let bestScore = Infinity;
     const results = [];
 
     for (let startIdx = 0; startIdx < n; startIdx += 1) {
       settings.bestAvg = bestAvg;
-      const { avg, aborted } = evaluateStartIndex(startIdx, countries, distances);
+      const { avg, worst, aborted } = evaluateStartIndex(startIdx, countries, distances);
+      const score = avg * settings.avgWorstWeight + worst * (1 - settings.avgWorstWeight);
       if (!aborted) {
-        results.push({ index: startIdx, avg });
+        results.push({ index: startIdx, avg, worst, score });
       }
-      if (avg < bestAvg) {
+      if (avg < bestAvg) bestAvg = avg;
+      if (score < bestScore) {
+        bestScore = score;
         bestAvg = avg;
+        bestWorst = worst;
         bestIndex = startIdx;
       }
       if ((startIdx + 1) % 10 === 0 || startIdx === n - 1) {
-        console.log(`Checked ${startIdx + 1}/${n} starts. Current best: ${bestIndex !== null ? countries[bestIndex].name : 'n/a'} (${bestAvg.toFixed(2)})`);
+        console.log(
+          `Checked ${startIdx + 1}/${n} starts. Current best: ${bestIndex !== null ? countries[bestIndex].name : 'n/a'} (avg ${bestAvg.toFixed(2)} worst ${bestWorst})`,
+        );
       }
     }
 
-    results.sort((a, b) => a.avg - b.avg);
+    results.sort((a, b) => {
+      if (a.score !== b.score) return a.score - b.score;
+      if (a.avg !== b.avg) return a.avg - b.avg;
+      return a.worst - b.worst;
+    });
     if (bestIndex !== null) {
       exhaustiveResult = {
         best: {
           name: countries[bestIndex].name,
           avgGuesses: Number(bestAvg.toFixed(2)),
+          worstGuesses: bestWorst,
+          score: Number(bestScore.toFixed(2)),
         },
         top: results.slice(0, 10).map((item) => ({
           name: countries[item.index].name,
           avgGuesses: Number(item.avg.toFixed(2)),
+          worstGuesses: item.worst,
+          score: Number(item.score.toFixed(2)),
         })),
       };
       console.log(`Best starting guess (exhaustive): ${countries[bestIndex].name}`);
-      console.log(`Average guesses (exhaustive): ${bestAvg.toFixed(2)}`);
-      console.log('Top 10 starts by average guesses:');
+      console.log(`Average guesses (exhaustive): ${bestAvg.toFixed(2)} | Worst: ${bestWorst}`);
+      console.log('Top 10 starts by weighted score:');
       results.slice(0, 10).forEach((item, idx) => {
-        console.log(`${idx + 1}. ${countries[item.index].name} (avg ${item.avg.toFixed(2)})`);
+        console.log(
+          `${idx + 1}. ${countries[item.index].name} (avg ${item.avg.toFixed(2)} worst ${item.worst} score ${item.score.toFixed(2)})`,
+        );
       });
     }
   } else {
@@ -754,6 +854,11 @@ async function main() {
       earlyStop: settings.earlyStop,
       geoMatched,
       exportDistances: settings.exportDistances,
+      avgWorstWeight: settings.avgWorstWeight,
+      avgWorstSweep: settings.avgWorstSweep,
+      avgWorstMin: settings.avgWorstMin,
+      avgWorstMax: settings.avgWorstMax,
+      avgWorstStep: settings.avgWorstStep,
       triWeight2: settings.triWeight2,
       triWeight3: settings.triWeight3,
       triWeight4: settings.triWeight4,
@@ -765,6 +870,7 @@ async function main() {
         triWeight3: settings.triWeight3,
         triWeight4: settings.triWeight4,
         farthestWeight: DEFAULT_FARTHEST_WEIGHT,
+        avgWorstWeight: settings.avgWorstWeight,
       },
     },
     heuristic: {
