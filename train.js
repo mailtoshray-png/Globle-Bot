@@ -51,6 +51,10 @@ const LOCAL_CACHE_PATH = path.join(__dirname, 'data', 'countries.json');
 const SOVEREIGN_PATH = path.join(__dirname, 'data', 'sovereign-countries.json');
 const TRAINING_PATH = path.join(__dirname, 'data', 'training.json');
 const DISTANCES_PATH = path.join(__dirname, 'data', 'distances.json');
+const trainingCache = {
+  candidateSets: new Map(),
+  rankBases: new Map(),
+};
 
 const GEO_NAME_ALIASES = new Map([
   ['unitedstatesofamerica', 'United States'],
@@ -434,6 +438,69 @@ function triangulationError(guessIndex, closestGuesses, distances, n) {
   return total / closestGuesses.length;
 }
 
+function compareGuessState(a, b) {
+  if (a.actualDistance !== b.actualDistance) return a.actualDistance - b.actualDistance;
+  return a.index - b.index;
+}
+
+function serializeGuessState(guesses) {
+  if (!guesses.length) return 'start';
+  return guesses
+    .map((guess) => `${guess.index}:${Number.isFinite(guess.distanceKm) ? guess.distanceKm : 'x'}`)
+    .join('|');
+}
+
+function buildOutcomeState(existingGuesses, guessIndex, targetIndex, distances, n) {
+  const nextGuesses = existingGuesses.map((guess) => ({
+    index: guess.index,
+    distanceKm: guess.distanceKm,
+    actualDistance: distances[guess.index * n + targetIndex],
+  }));
+  const guessDistance = distances[guessIndex * n + targetIndex];
+  nextGuesses.push({
+    index: guessIndex,
+    distanceKm: Math.round(guessDistance),
+    actualDistance: guessDistance,
+  });
+  nextGuesses.sort(compareGuessState);
+  return {
+    guesses: nextGuesses,
+    key: serializeGuessState(nextGuesses),
+    distanceKm: Math.round(guessDistance),
+  };
+}
+
+function partitionOutcomes(candidateIndices, guesses, guessIndex, distances, n) {
+  const counts = new Map();
+  const targetsByKey = new Map();
+  let solvedCount = 0;
+
+  candidateIndices.forEach((targetIndex) => {
+    if (targetIndex === guessIndex) {
+      solvedCount += 1;
+      return;
+    }
+    const outcome = buildOutcomeState(guesses, guessIndex, targetIndex, distances, n);
+    counts.set(outcome.key, (counts.get(outcome.key) || 0) + 1);
+    if (!targetsByKey.has(outcome.key)) targetsByKey.set(outcome.key, []);
+    targetsByKey.get(outcome.key).push(targetIndex);
+  });
+
+  return { counts, targetsByKey, solvedCount };
+}
+
+function exactSplitStats(candidateIndices, guesses, guessIndex, distances, n) {
+  const total = candidateIndices.length;
+  const { counts, solvedCount } = partitionOutcomes(candidateIndices, guesses, guessIndex, distances, n);
+  let expected = 0;
+  let worst = 0;
+  counts.forEach((count) => {
+    expected += (count * count) / total;
+    if (count > worst) worst = count;
+  });
+  return { expected, worst, solvedCount };
+}
+
 function normalizeValues(values) {
   if (!values.length) return [];
   const min = Math.min(...values);
@@ -454,79 +521,40 @@ function getTriangulationWeights(count) {
 }
 
 function rankSuggestions(candidateIndices, bestDistance, distances, n, guessedSet, guesses = []) {
-  const scores = [];
-  const closestGuesses = guesses.filter((guess) => Number.isFinite(guess.distanceKm));
-  const useTriangulation = closestGuesses.length >= TRIANGULATION_MIN_GUESSES;
-  const weights = getTriangulationWeights(closestGuesses.length);
+  const stateKey = serializeGuessState(guesses);
   const avgWorstWeight = settings.avgWorstWeight;
-  const farthestGuess = guesses.length > 1 ? guesses[guesses.length - 1] : null;
-  const farthestWeight = farthestGuess ? DEFAULT_FARTHEST_WEIGHT : 0;
-  candidateIndices.forEach((idx) => {
-    if (guessedSet.has(idx)) return;
-    const stats = expectedRemainingStats(idx, candidateIndices, bestDistance, distances, n);
-    const expected = stats.expected;
-    const worst = stats.worst;
-    let avgDistance = 0;
-    candidateIndices.forEach((targetIdx) => {
-      avgDistance += distances[idx * n + targetIdx];
+  let baseScores = trainingCache.rankBases.get(stateKey);
+  if (!baseScores) {
+    baseScores = [];
+    candidateIndices.forEach((idx) => {
+      if (guessedSet.has(idx)) return;
+      const split = exactSplitStats(candidateIndices, guesses, idx, distances, n);
+      let avgDistance = 0;
+      candidateIndices.forEach((targetIdx) => {
+        avgDistance += distances[idx * n + targetIdx];
+      });
+      avgDistance /= candidateIndices.length;
+      baseScores.push({
+        index: idx,
+        expected: split.expected,
+        worst: split.worst,
+        avgDistance,
+        solvedCount: split.solvedCount,
+      });
     });
-    avgDistance /= candidateIndices.length;
-    const triangulation = useTriangulation
-      ? triangulationError(idx, closestGuesses, distances, n)
-      : null;
-    const farthestDistance = farthestGuess ? distances[idx * n + farthestGuess.index] : null;
-    scores.push({
-      index: idx,
-      expected,
-      worst,
-      avgDistance,
-      triangulation,
-      farthestDistance,
-      combined: null,
-      baseScore: null,
-    });
-  });
-
-  const expectedValues = scores.map((item) => item.expected);
-  const worstValues = scores.map((item) => item.worst);
-  const expectedNorm = normalizeValues(expectedValues);
-  const worstNorm = normalizeValues(worstValues);
-  const baseScores = expectedNorm.map((value, idx) => value * avgWorstWeight + worstNorm[idx] * (1 - avgWorstWeight));
-  scores.forEach((item, idx) => {
-    item.baseScore = baseScores[idx];
-  });
-
-  const useCombined = useTriangulation || farthestWeight > 0;
-  if (useCombined) {
-    const triangulationNorm = useTriangulation
-      ? normalizeValues(scores.map((item) => item.triangulation))
-      : [];
-    const farthestPenalty = farthestGuess
-      ? normalizeValues(scores.map((item) => item.farthestDistance)).map((value) => 1 - value)
-      : [];
-    const weightScale = 1 - farthestWeight;
-    const expectedWeight = (useTriangulation ? weights.expected : 1) * weightScale;
-    const triangulationWeight = (useTriangulation ? weights.triangulation : 0) * weightScale;
-    scores.forEach((item, idx) => {
-      let combined = baseScores[idx] * expectedWeight;
-      if (useTriangulation) combined += triangulationNorm[idx] * triangulationWeight;
-      if (farthestWeight > 0) combined += farthestPenalty[idx] * farthestWeight;
-      item.combined = combined;
-    });
-  } else {
-    scores.forEach((item, idx) => {
-      item.combined = baseScores[idx];
-    });
+    trainingCache.rankBases.set(stateKey, baseScores);
   }
 
+  const scores = baseScores.map((item) => ({
+    ...item,
+    combined: item.expected * avgWorstWeight + item.worst * (1 - avgWorstWeight),
+  }));
+
   scores.sort((a, b) => {
-    if (useCombined && a.combined !== b.combined) return a.combined - b.combined;
+    if (a.combined !== b.combined) return a.combined - b.combined;
     if (a.expected !== b.expected) return a.expected - b.expected;
     if (a.worst !== b.worst) return a.worst - b.worst;
-    if (useTriangulation && a.triangulation !== b.triangulation) return a.triangulation - b.triangulation;
-    if (farthestGuess && a.farthestDistance !== b.farthestDistance) {
-      return b.farthestDistance - a.farthestDistance;
-    }
+    if (a.solvedCount !== b.solvedCount) return b.solvedCount - a.solvedCount;
     return a.avgDistance - b.avgDistance;
   });
   return scores;
@@ -557,6 +585,115 @@ function filterCandidates(candidates, guesses, distances, n) {
   });
 }
 
+function getFilteredCandidates(candidates, guesses, distances, n) {
+  const stateKey = serializeGuessState(guesses);
+  if (trainingCache.candidateSets.has(stateKey)) {
+    return trainingCache.candidateSets.get(stateKey);
+  }
+  const filtered = filterCandidates(candidates, guesses, distances, n);
+  trainingCache.candidateSets.set(stateKey, filtered);
+  return filtered;
+}
+
+function describeState(guesses, countries) {
+  return guesses.map((guess) => ({
+    name: countries[guess.index].name,
+    distanceKm: guess.distanceKm,
+  }));
+}
+
+function recordPolicyState(policyMap, guesses, candidateIndices, ranked, countries) {
+  const key = serializeGuessState(guesses);
+  const existing = policyMap.get(key);
+  if (existing) {
+    existing.hits += 1;
+    return;
+  }
+
+  policyMap.set(key, {
+    key,
+    depth: guesses.length,
+    hits: 1,
+    candidateCount: candidateIndices.length,
+    state: describeState(guesses, countries),
+    bestGuess: ranked[0]
+      ? {
+          name: countries[ranked[0].index].name,
+          score: Number(ranked[0].combined.toFixed(3)),
+          expected: Number(ranked[0].expected.toFixed(3)),
+          worst: ranked[0].worst,
+        }
+      : null,
+    top: ranked.slice(0, 5).map((item) => ({
+      name: countries[item.index].name,
+      score: Number(item.combined.toFixed(3)),
+      expected: Number(item.expected.toFixed(3)),
+      worst: item.worst,
+    })),
+  });
+}
+
+function collectPolicyStates(startIndex, countries, distances) {
+  const n = countries.length;
+  const allIndices = Array.from({ length: n }, (_, i) => i);
+  const policyMap = new Map();
+
+  const rankedStart = rankSuggestions(allIndices, Infinity, distances, n, new Set(), []);
+  recordPolicyState(policyMap, [], allIndices, rankedStart, countries);
+
+  for (let targetIndex = 0; targetIndex < n; targetIndex += 1) {
+    let candidates = allIndices.slice();
+    const guessedSet = new Set();
+    const guesses = [];
+    let bestDistance = Infinity;
+
+    const applyGuess = (idx) => {
+      guessedSet.add(idx);
+      const distance = distances[idx * n + targetIndex];
+      const guess = {
+        index: idx,
+        actualDistance: distance,
+        distanceKm: Math.round(distance),
+      };
+      let insertAt = guesses.findIndex((item) => item.actualDistance > distance);
+      if (insertAt === -1) insertAt = guesses.length;
+      guesses.splice(insertAt, 0, guess);
+      bestDistance = guesses[0].actualDistance;
+      if (idx === targetIndex) return true;
+      candidates = getFilteredCandidates(allIndices, guesses, distances, n);
+      return false;
+    };
+
+    if (applyGuess(startIndex)) continue;
+
+    for (let step = 1; step < settings.maxSteps; step += 1) {
+      const ranked = rankSuggestions(candidates, bestDistance, distances, n, guessedSet, guesses);
+      if (!ranked.length) break;
+      recordPolicyState(policyMap, guesses, candidates, ranked, countries);
+      const nextGuess = ranked[0].index;
+      if (applyGuess(nextGuess)) break;
+    }
+  }
+
+  const states = Array.from(policyMap.values()).sort((a, b) => {
+    if (a.depth !== b.depth) return a.depth - b.depth;
+    if (b.hits !== a.hits) return b.hits - a.hits;
+    return a.key.localeCompare(b.key);
+  });
+
+  const byDepth = {};
+  states.forEach((state) => {
+    const depthKey = String(state.depth);
+    if (!byDepth[depthKey]) byDepth[depthKey] = [];
+    byDepth[depthKey].push(state);
+  });
+
+  return {
+    stateCount: states.length,
+    byDepth,
+  };
+}
+
 function simulateTarget(targetIndex, countries, distances, startIndex = null) {
   const n = countries.length;
   const allIndices = Array.from({ length: n }, (_, i) => i);
@@ -580,7 +717,7 @@ function simulateTarget(targetIndex, countries, distances, startIndex = null) {
     guesses.splice(insertAt, 0, guess);
     bestDistance = guesses[0].actualDistance;
     if (idx === targetIndex) return true;
-    candidates = filterCandidates(allIndices, guesses, distances, n);
+    candidates = getFilteredCandidates(allIndices, guesses, distances, n);
     return false;
   };
 
@@ -838,6 +975,13 @@ async function main() {
     console.log('Tip: run with --exhaustive to sweep every starting country.');
   }
 
+  const policyStartIndex = exhaustiveResult
+    ? countries.findIndex((country) => country.name === exhaustiveResult.best.name)
+    : bestStart.index;
+  console.log(`Collecting policy states from start: ${countries[policyStartIndex].name}`);
+  const policyResult = collectPolicyStates(policyStartIndex, countries, distances);
+  console.log(`Recorded ${policyResult.stateCount} reachable policy states.`);
+
   const trainingData = {
     generatedAt: new Date().toISOString(),
     countriesCount: n,
@@ -882,6 +1026,11 @@ async function main() {
       top: heuristicTop,
     },
     exhaustive: exhaustiveResult,
+    policy: {
+      start: countries[policyStartIndex].name,
+      stateCount: policyResult.stateCount,
+      byDepth: policyResult.byDepth,
+    },
   };
 
   await mkdir(path.dirname(TRAINING_PATH), { recursive: true });

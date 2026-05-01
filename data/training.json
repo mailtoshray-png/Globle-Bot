@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T01:24:45.883Z",
+  "generatedAt": "2026-05-01T01:46:48.300Z",
   "countriesCount": 194,
   "source": "/Users/shraykanchan/Coding/Cursor/Globle Bot/data/countries.json",
   "settings": {
@@ -14,152 +14,7025 @@
     "earlyStop": false,
     "geoMatched": 165,
     "exportDistances": true,
-    "avgWorstWeight": 0.55,
+    "avgWorstWeight": 0.501,
     "avgWorstSweep": true,
-    "avgWorstMin": 0.55,
-    "avgWorstMax": 0.95,
-    "avgWorstStep": 0.01,
-    "triWeight2": 0,
-    "triWeight3": 0,
-    "triWeight4": 0
+    "avgWorstMin": 0.501,
+    "avgWorstMax": 0.999,
+    "avgWorstStep": 0.001,
+    "triWeight2": 0.4,
+    "triWeight3": 0.5,
+    "triWeight4": 0.6
   },
   "strategy": {
     "triangulationMinGuesses": 2,
     "weights": {
-      "triWeight2": 0,
-      "triWeight3": 0,
-      "triWeight4": 0,
+      "triWeight2": 0.4,
+      "triWeight3": 0.5,
+      "triWeight4": 0.6,
       "farthestWeight": 0.2,
-      "avgWorstWeight": 0.55
+      "avgWorstWeight": 0.501
     }
   },
   "heuristic": {
     "best": {
-      "name": "Saint Vincent and the Grenadines",
-      "expectedRemaining": 2.13,
-      "avgDistanceKm": 8841
+      "name": "Palestine",
+      "expectedRemaining": 0.99,
+      "avgDistanceKm": 5745
     },
     "top": [
       {
-        "name": "Saint Vincent and the Grenadines",
-        "expectedRemaining": 2.13,
-        "avgDistanceKm": 8841
+        "name": "Palestine",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 5745
       },
       {
-        "name": "Barbados",
-        "expectedRemaining": 2.19,
-        "avgDistanceKm": 8752
+        "name": "Monaco",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 5772
       },
       {
-        "name": "Grenada",
-        "expectedRemaining": 2.2,
-        "avgDistanceKm": 8891
+        "name": "Liechtenstein",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 5790
       },
       {
-        "name": "Saint Lucia",
-        "expectedRemaining": 2.21,
-        "avgDistanceKm": 8794
+        "name": "Ireland",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 5835
       },
       {
-        "name": "Indonesia",
-        "expectedRemaining": 2.24,
-        "avgDistanceKm": 8349
+        "name": "Seychelles",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 7402
       },
       {
-        "name": "Palau",
-        "expectedRemaining": 2.31,
-        "avgDistanceKm": 11113
-      },
-      {
-        "name": "Antigua and Barbuda",
-        "expectedRemaining": 2.31,
-        "avgDistanceKm": 8724
-      },
-      {
-        "name": "East Timor",
-        "expectedRemaining": 2.31,
-        "avgDistanceKm": 10751
+        "name": "Maldives",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 7987
       },
       {
         "name": "Dominica",
-        "expectedRemaining": 2.32,
+        "expectedRemaining": 0.99,
         "avgDistanceKm": 8763
       },
       {
-        "name": "Malaysia",
-        "expectedRemaining": 2.36,
-        "avgDistanceKm": 8755
+        "name": "Australia",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 10090
+      },
+      {
+        "name": "Fiji Islands",
+        "expectedRemaining": 0.99,
+        "avgDistanceKm": 12741
+      },
+      {
+        "name": "Sweden",
+        "expectedRemaining": 1.01,
+        "avgDistanceKm": 5485
       }
     ]
   },
   "exhaustive": {
     "best": {
       "name": "Grenada",
-      "avgGuesses": 2.22,
+      "avgGuesses": 2.21,
       "worstGuesses": 3,
-      "score": 2.57
+      "score": 2.6
     },
     "top": [
       {
         "name": "Grenada",
-        "avgGuesses": 2.22,
+        "avgGuesses": 2.21,
         "worstGuesses": 3,
-        "score": 2.57
+        "score": 2.6
       },
       {
         "name": "Antigua and Barbuda",
         "avgGuesses": 2.22,
         "worstGuesses": 3,
-        "score": 2.57
-      },
-      {
-        "name": "Liechtenstein",
-        "avgGuesses": 2.23,
-        "worstGuesses": 3,
-        "score": 2.58
+        "score": 2.61
       },
       {
         "name": "Indonesia",
         "avgGuesses": 2.24,
         "worstGuesses": 3,
-        "score": 2.58
+        "score": 2.62
       },
       {
         "name": "Saint Vincent and the Grenadines",
         "avgGuesses": 2.24,
         "worstGuesses": 3,
-        "score": 2.58
+        "score": 2.62
       },
       {
         "name": "Bahamas",
         "avgGuesses": 2.25,
         "worstGuesses": 3,
-        "score": 2.59
+        "score": 2.62
       },
       {
-        "name": "Dominica",
+        "name": "Liechtenstein",
         "avgGuesses": 2.25,
         "worstGuesses": 3,
-        "score": 2.59
+        "score": 2.62
       },
       {
         "name": "Palau",
         "avgGuesses": 2.25,
         "worstGuesses": 3,
-        "score": 2.59
+        "score": 2.62
       },
       {
-        "name": "Singapore",
+        "name": "Dominica",
         "avgGuesses": 2.25,
         "worstGuesses": 3,
-        "score": 2.59
+        "score": 2.63
       },
       {
-        "name": "Barbados",
-        "avgGuesses": 2.26,
+        "name": "Haiti",
+        "avgGuesses": 2.25,
         "worstGuesses": 3,
-        "score": 2.59
+        "score": 2.63
+      },
+      {
+        "name": "Saint Lucia",
+        "avgGuesses": 2.25,
+        "worstGuesses": 3,
+        "score": 2.63
       }
     ]
+  },
+  "policy": {
+    "start": "Grenada",
+    "stateCount": 235,
+    "byDepth": {
+      "0": [
+        {
+          "key": "start",
+          "depth": 0,
+          "hits": 1,
+          "candidateCount": 194,
+          "state": [],
+          "bestGuess": {
+            "name": "Palestine",
+            "score": 0.997,
+            "expected": 0.995,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Palestine",
+              "score": 0.997,
+              "expected": 0.995,
+              "worst": 1
+            },
+            {
+              "name": "Monaco",
+              "score": 0.997,
+              "expected": 0.995,
+              "worst": 1
+            },
+            {
+              "name": "Liechtenstein",
+              "score": 0.997,
+              "expected": 0.995,
+              "worst": 1
+            },
+            {
+              "name": "Ireland",
+              "score": 0.997,
+              "expected": 0.995,
+              "worst": 1
+            },
+            {
+              "name": "Seychelles",
+              "score": 0.997,
+              "expected": 0.995,
+              "worst": 1
+            }
+          ]
+        }
+      ],
+      "1": [
+        {
+          "key": "66:16656",
+          "depth": 1,
+          "hits": 2,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 16656
+            }
+          ],
+          "bestGuess": {
+            "name": "Papua New Guinea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Papua New Guinea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Thailand",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10010",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10010
+            }
+          ],
+          "bestGuess": {
+            "name": "South Sudan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "South Sudan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10127",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10127
+            }
+          ],
+          "bestGuess": {
+            "name": "Jordan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Jordan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10153",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10153
+            }
+          ],
+          "bestGuess": {
+            "name": "Botswana",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Botswana",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10195",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10195
+            }
+          ],
+          "bestGuess": {
+            "name": "Syria",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Syria",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:102",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 102
+            }
+          ],
+          "bestGuess": {
+            "name": "Saint Vincent and the Grenadines",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Saint Vincent and the Grenadines",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10223",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10223
+            }
+          ],
+          "bestGuess": {
+            "name": "Rwanda",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Rwanda",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10262",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10262
+            }
+          ],
+          "bestGuess": {
+            "name": "Burundi",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Burundi",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Zambia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10264",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10264
+            }
+          ],
+          "bestGuess": {
+            "name": "Burundi",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Burundi",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Zambia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10300",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10300
+            }
+          ],
+          "bestGuess": {
+            "name": "Georgia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Georgia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "South Africa",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10301",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10301
+            }
+          ],
+          "bestGuess": {
+            "name": "Georgia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Georgia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "South Africa",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10410",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10410
+            }
+          ],
+          "bestGuess": {
+            "name": "Uganda",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Uganda",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10523",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10523
+            }
+          ],
+          "bestGuess": {
+            "name": "Armenia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Armenia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Zimbabwe",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10531",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10531
+            }
+          ],
+          "bestGuess": {
+            "name": "Armenia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Armenia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Zimbabwe",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10655",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10655
+            }
+          ],
+          "bestGuess": {
+            "name": "Iraq",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Iraq",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Lesotho",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10666",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10666
+            }
+          ],
+          "bestGuess": {
+            "name": "Iraq",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Iraq",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Lesotho",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10715",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10715
+            }
+          ],
+          "bestGuess": {
+            "name": "Azerbaijan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Azerbaijan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10855",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10855
+            }
+          ],
+          "bestGuess": {
+            "name": "Eritrea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Eritrea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Tanzania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10868",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10868
+            }
+          ],
+          "bestGuess": {
+            "name": "Eritrea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Eritrea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Tanzania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:10916",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10916
+            }
+          ],
+          "bestGuess": {
+            "name": "Eswatini",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Eswatini",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:10950",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 10950
+            }
+          ],
+          "bestGuess": {
+            "name": "Malawi",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Malawi",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11046",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11046
+            }
+          ],
+          "bestGuess": {
+            "name": "Kenya",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Kenya",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:1107",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 1107
+            }
+          ],
+          "bestGuess": {
+            "name": "Suriname",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Suriname",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11097",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11097
+            }
+          ],
+          "bestGuess": {
+            "name": "Ethiopia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Ethiopia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Saudi Arabia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11113",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11113
+            }
+          ],
+          "bestGuess": {
+            "name": "Ethiopia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Ethiopia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Saudi Arabia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11141",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11141
+            }
+          ],
+          "bestGuess": {
+            "name": "Kuwait",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Kuwait",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11185",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11185
+            }
+          ],
+          "bestGuess": {
+            "name": "Mozambique",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mozambique",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11245",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11245
+            }
+          ],
+          "bestGuess": {
+            "name": "Djibouti",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Djibouti",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11553",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11553
+            }
+          ],
+          "bestGuess": {
+            "name": "Bahrain",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Bahrain",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Iran",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11556",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11556
+            }
+          ],
+          "bestGuess": {
+            "name": "Bahrain",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Bahrain",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Iran",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11627",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11627
+            }
+          ],
+          "bestGuess": {
+            "name": "Kazakhstan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Kazakhstan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Qatar",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11641",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11641
+            }
+          ],
+          "bestGuess": {
+            "name": "Kazakhstan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Kazakhstan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Qatar",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:1166",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 1166
+            }
+          ],
+          "bestGuess": {
+            "name": "Dominican Republic",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Dominican Republic",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11696",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11696
+            }
+          ],
+          "bestGuess": {
+            "name": "Turkmenistan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Turkmenistan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11743",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11743
+            }
+          ],
+          "bestGuess": {
+            "name": "Yemen",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Yemen",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11817",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11817
+            }
+          ],
+          "bestGuess": {
+            "name": "Somalia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Somalia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11913",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11913
+            }
+          ],
+          "bestGuess": {
+            "name": "Uzbekistan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Uzbekistan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:11942",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11942
+            }
+          ],
+          "bestGuess": {
+            "name": "Comoros",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Comoros",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "United Arab Emirates",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:11949",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 11949
+            }
+          ],
+          "bestGuess": {
+            "name": "Comoros",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Comoros",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "United Arab Emirates",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:12241",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12241
+            }
+          ],
+          "bestGuess": {
+            "name": "Oman",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Oman",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12368",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12368
+            }
+          ],
+          "bestGuess": {
+            "name": "Madagascar",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Madagascar",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12500",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12500
+            }
+          ],
+          "bestGuess": {
+            "name": "Samoa",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Samoa",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12537",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12537
+            }
+          ],
+          "bestGuess": {
+            "name": "Tajikistan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Tajikistan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12592",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12592
+            }
+          ],
+          "bestGuess": {
+            "name": "Afghanistan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Afghanistan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Kyrgyzstan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:12608",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12608
+            }
+          ],
+          "bestGuess": {
+            "name": "Afghanistan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Afghanistan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Kyrgyzstan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:12657",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12657
+            }
+          ],
+          "bestGuess": {
+            "name": "Seychelles",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Seychelles",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12844",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12844
+            }
+          ],
+          "bestGuess": {
+            "name": "Tonga",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Tonga",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:12959",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 12959
+            }
+          ],
+          "bestGuess": {
+            "name": "Pakistan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Pakistan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:13297",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 13297
+            }
+          ],
+          "bestGuess": {
+            "name": "Mongolia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mongolia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:13484",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 13484
+            }
+          ],
+          "bestGuess": {
+            "name": "Tuvalu",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Tuvalu",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:13726",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 13726
+            }
+          ],
+          "bestGuess": {
+            "name": "Mauritius",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mauritius",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:13921",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 13921
+            }
+          ],
+          "bestGuess": {
+            "name": "Marshall Islands",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Marshall Islands",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:14102",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14102
+            }
+          ],
+          "bestGuess": {
+            "name": "North Korea",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "North Korea",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:14198",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14198
+            }
+          ],
+          "bestGuess": {
+            "name": "Nepal",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Nepal",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:1437",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 1437
+            }
+          ],
+          "bestGuess": {
+            "name": "Haiti",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Haiti",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:14501",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14501
+            }
+          ],
+          "bestGuess": {
+            "name": "Japan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Japan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Nauru",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14517",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14517
+            }
+          ],
+          "bestGuess": {
+            "name": "Japan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Japan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Nauru",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14581",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14581
+            }
+          ],
+          "bestGuess": {
+            "name": "China",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "China",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "South Korea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14599",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14599
+            }
+          ],
+          "bestGuess": {
+            "name": "China",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "China",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "South Korea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14630",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14630
+            }
+          ],
+          "bestGuess": {
+            "name": "India",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "India",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Vanuatu",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14654",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14654
+            }
+          ],
+          "bestGuess": {
+            "name": "India",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "India",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Bhutan",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Vanuatu",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14678",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14678
+            }
+          ],
+          "bestGuess": {
+            "name": "Bhutan",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Bhutan",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "India",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:14743",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 14743
+            }
+          ],
+          "bestGuess": {
+            "name": "Maldives",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Maldives",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:15003",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 15003
+            }
+          ],
+          "bestGuess": {
+            "name": "Bangladesh",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Bangladesh",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:15122",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 15122
+            }
+          ],
+          "bestGuess": {
+            "name": "Micronesia, Federated States of",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Micronesia, Federated States of",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:15302",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 15302
+            }
+          ],
+          "bestGuess": {
+            "name": "Solomon Islands",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Solomon Islands",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Sri Lanka",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:15317",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 15317
+            }
+          ],
+          "bestGuess": {
+            "name": "Solomon Islands",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Solomon Islands",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Sri Lanka",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:15809",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 15809
+            }
+          ],
+          "bestGuess": {
+            "name": "Myanmar",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Myanmar",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:1622",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 1622
+            }
+          ],
+          "bestGuess": {
+            "name": "Colombia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Colombia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:16287",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 16287
+            }
+          ],
+          "bestGuess": {
+            "name": "Laos",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Laos",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:16598",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 16598
+            }
+          ],
+          "bestGuess": {
+            "name": "Vietnam",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Vietnam",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:16900",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 16900
+            }
+          ],
+          "bestGuess": {
+            "name": "Cambodia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Cambodia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:171",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 171
+            }
+          ],
+          "bestGuess": {
+            "name": "Trinidad and Tobago",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Trinidad and Tobago",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:17205",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 17205
+            }
+          ],
+          "bestGuess": {
+            "name": "Philippines",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Philippines",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:17461",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 17461
+            }
+          ],
+          "bestGuess": {
+            "name": "Palau",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Palau",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:17754",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 17754
+            }
+          ],
+          "bestGuess": {
+            "name": "Australia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Australia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:17820",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 17820
+            }
+          ],
+          "bestGuess": {
+            "name": "Singapore",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Singapore",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:17959",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 17959
+            }
+          ],
+          "bestGuess": {
+            "name": "Malaysia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Malaysia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:1798",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 1798
+            }
+          ],
+          "bestGuess": {
+            "name": "Jamaica",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Jamaica",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:18118",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 18118
+            }
+          ],
+          "bestGuess": {
+            "name": "Brunei",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Brunei",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:18943",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 18943
+            }
+          ],
+          "bestGuess": {
+            "name": "Indonesia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Indonesia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:19128",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 19128
+            }
+          ],
+          "bestGuess": {
+            "name": "East Timor",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "East Timor",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2057",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2057
+            }
+          ],
+          "bestGuess": {
+            "name": "Panama",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Panama",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:210",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 210
+            }
+          ],
+          "bestGuess": {
+            "name": "Saint Lucia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Saint Lucia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2121",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2121
+            }
+          ],
+          "bestGuess": {
+            "name": "Bahamas",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Bahamas",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2164",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2164
+            }
+          ],
+          "bestGuess": {
+            "name": "Cuba",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Cuba",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2387",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2387
+            }
+          ],
+          "bestGuess": {
+            "name": "Ecuador",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Ecuador",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2479",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2479
+            }
+          ],
+          "bestGuess": {
+            "name": "Costa Rica",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Costa Rica",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2554",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2554
+            }
+          ],
+          "bestGuess": {
+            "name": "Nicaragua",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Nicaragua",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:260",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 260
+            }
+          ],
+          "bestGuess": {
+            "name": "Barbados",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Barbados",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2671",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2671
+            }
+          ],
+          "bestGuess": {
+            "name": "Honduras",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Honduras",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2791",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2791
+            }
+          ],
+          "bestGuess": {
+            "name": "Peru",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Peru",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:2935",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2935
+            }
+          ],
+          "bestGuess": {
+            "name": "Belize",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Belize",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "El Salvador",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:2954",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 2954
+            }
+          ],
+          "bestGuess": {
+            "name": "Belize",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Belize",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "El Salvador",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:3081",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 3081
+            }
+          ],
+          "bestGuess": {
+            "name": "Brazil",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Brazil",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Guatemala",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:3103",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 3103
+            }
+          ],
+          "bestGuess": {
+            "name": "Brazil",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Brazil",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Guatemala",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:3169",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 3169
+            }
+          ],
+          "bestGuess": {
+            "name": "Bolivia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Bolivia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:365",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 365
+            }
+          ],
+          "bestGuess": {
+            "name": "Dominica",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Dominica",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:3975",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 3975
+            }
+          ],
+          "bestGuess": {
+            "name": "Paraguay",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Paraguay",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:4081",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 4081
+            }
+          ],
+          "bestGuess": {
+            "name": "Cape Verde",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Cape Verde",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:4379",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 4379
+            }
+          ],
+          "bestGuess": {
+            "name": "United States",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "United States",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:4493",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 4493
+            }
+          ],
+          "bestGuess": {
+            "name": "Mexico",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mexico",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5008",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5008
+            }
+          ],
+          "bestGuess": {
+            "name": "Gambia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Gambia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Uruguay",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5024",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5024
+            }
+          ],
+          "bestGuess": {
+            "name": "Gambia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Gambia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Uruguay",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5053",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5053
+            }
+          ],
+          "bestGuess": {
+            "name": "Guinea-Bissau",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Guinea-Bissau",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5110",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5110
+            }
+          ],
+          "bestGuess": {
+            "name": "Senegal",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Senegal",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5467",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5467
+            }
+          ],
+          "bestGuess": {
+            "name": "Mauritania",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Mauritania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Sierra Leone",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5475",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5475
+            }
+          ],
+          "bestGuess": {
+            "name": "Guinea",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Guinea",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Sierra Leone",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Mauritania",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5499",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5499
+            }
+          ],
+          "bestGuess": {
+            "name": "Guinea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Guinea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Mauritania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5575",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5575
+            }
+          ],
+          "bestGuess": {
+            "name": "Chile",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Chile",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5627",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5627
+            }
+          ],
+          "bestGuess": {
+            "name": "Argentina",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Argentina",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5761",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5761
+            }
+          ],
+          "bestGuess": {
+            "name": "Liberia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Liberia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:578",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 578
+            }
+          ],
+          "bestGuess": {
+            "name": "Antigua and Barbuda",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Antigua and Barbuda",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Saint Kitts and Nevis",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:579",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 579
+            }
+          ],
+          "bestGuess": {
+            "name": "Antigua and Barbuda",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Antigua and Barbuda",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Saint Kitts and Nevis",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:5970",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5970
+            }
+          ],
+          "bestGuess": {
+            "name": "Morocco",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Morocco",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6076",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6076
+            }
+          ],
+          "bestGuess": {
+            "name": "Portugal",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Portugal",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6162",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6162
+            }
+          ],
+          "bestGuess": {
+            "name": "Ivory Coast",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Ivory Coast",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6208",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6208
+            }
+          ],
+          "bestGuess": {
+            "name": "Mali",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mali",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6243",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6243
+            }
+          ],
+          "bestGuess": {
+            "name": "Canada",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Canada",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6521",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6521
+            }
+          ],
+          "bestGuess": {
+            "name": "Burkina Faso",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Burkina Faso",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Spain",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6531",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6531
+            }
+          ],
+          "bestGuess": {
+            "name": "Spain",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Spain",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Ireland",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Burkina Faso",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6553",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6553
+            }
+          ],
+          "bestGuess": {
+            "name": "Ireland",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Ireland",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Spain",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6645",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6645
+            }
+          ],
+          "bestGuess": {
+            "name": "Ghana",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Ghana",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6709",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6709
+            }
+          ],
+          "bestGuess": {
+            "name": "Iceland",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Iceland",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6774",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6774
+            }
+          ],
+          "bestGuess": {
+            "name": "Algeria",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Algeria",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6836",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6836
+            }
+          ],
+          "bestGuess": {
+            "name": "Togo",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Togo",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:6895",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6895
+            }
+          ],
+          "bestGuess": {
+            "name": "Andorra",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Andorra",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "United Kingdom",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6918",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6918
+            }
+          ],
+          "bestGuess": {
+            "name": "United Kingdom",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "United Kingdom",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Andorra",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Montenegro",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6936",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6936
+            }
+          ],
+          "bestGuess": {
+            "name": "Andorra",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Andorra",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Montenegro",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:6984",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 6984
+            }
+          ],
+          "bestGuess": {
+            "name": "Benin",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Benin",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7037",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7037
+            }
+          ],
+          "bestGuess": {
+            "name": "France",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "France",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7290",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7290
+            }
+          ],
+          "bestGuess": {
+            "name": "Belgium",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Belgium",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7331",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7331
+            }
+          ],
+          "bestGuess": {
+            "name": "Russia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Russia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7380",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7380
+            }
+          ],
+          "bestGuess": {
+            "name": "Luxembourg",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Luxembourg",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Netherlands",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Monaco",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7393",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7393
+            }
+          ],
+          "bestGuess": {
+            "name": "Luxembourg",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Luxembourg",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Netherlands",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Monaco",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7404",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7404
+            }
+          ],
+          "bestGuess": {
+            "name": "Luxembourg",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Luxembourg",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Netherlands",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Monaco",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7484",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7484
+            }
+          ],
+          "bestGuess": {
+            "name": "Niger",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Niger",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Switzerland",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7502",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7502
+            }
+          ],
+          "bestGuess": {
+            "name": "Switzerland",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Switzerland",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Niger",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Fiji Islands",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7518",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7518
+            }
+          ],
+          "bestGuess": {
+            "name": "Switzerland",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Switzerland",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Tunisia",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Fiji Islands",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7536",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7536
+            }
+          ],
+          "bestGuess": {
+            "name": "Fiji Islands",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Fiji Islands",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Tunisia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7606",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7606
+            }
+          ],
+          "bestGuess": {
+            "name": "Liechtenstein",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Liechtenstein",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7669",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7669
+            }
+          ],
+          "bestGuess": {
+            "name": "Nigeria",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Nigeria",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Sao Tome and Principe",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7677",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7677
+            }
+          ],
+          "bestGuess": {
+            "name": "Nigeria",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Nigeria",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Sao Tome and Principe",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7716",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7716
+            }
+          ],
+          "bestGuess": {
+            "name": "Germany",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Germany",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7809",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7809
+            }
+          ],
+          "bestGuess": {
+            "name": "Italy",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Italy",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "San Marino",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7810",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7810
+            }
+          ],
+          "bestGuess": {
+            "name": "Italy",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Italy",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "San Marino",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:7857",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7857
+            }
+          ],
+          "bestGuess": {
+            "name": "Denmark",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Denmark",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7895",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7895
+            }
+          ],
+          "bestGuess": {
+            "name": "Austria",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Austria",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7972",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7972
+            }
+          ],
+          "bestGuess": {
+            "name": "Malta",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Malta",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8014",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8014
+            }
+          ],
+          "bestGuess": {
+            "name": "Equatorial Guinea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Equatorial Guinea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Slovenia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8016",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8016
+            }
+          ],
+          "bestGuess": {
+            "name": "Equatorial Guinea",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Equatorial Guinea",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Slovenia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8060",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8060
+            }
+          ],
+          "bestGuess": {
+            "name": "Czech Republic",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Czech Republic",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Kiribati",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8069",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8069
+            }
+          ],
+          "bestGuess": {
+            "name": "Czech Republic",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Czech Republic",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Kiribati",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8108",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8108
+            }
+          ],
+          "bestGuess": {
+            "name": "Cameroon",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Cameroon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Croatia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8128",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8128
+            }
+          ],
+          "bestGuess": {
+            "name": "Cameroon",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Cameroon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Croatia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8159",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8159
+            }
+          ],
+          "bestGuess": {
+            "name": "New Zealand",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "New Zealand",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8213",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8213
+            }
+          ],
+          "bestGuess": {
+            "name": "Bosnia and Herzegovina",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Bosnia and Herzegovina",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Gabon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8226",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8226
+            }
+          ],
+          "bestGuess": {
+            "name": "Bosnia and Herzegovina",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Bosnia and Herzegovina",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Gabon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8261",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8261
+            }
+          ],
+          "bestGuess": {
+            "name": "Sweden",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Sweden",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8291",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8291
+            }
+          ],
+          "bestGuess": {
+            "name": "Norway",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Norway",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8320",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8320
+            }
+          ],
+          "bestGuess": {
+            "name": "Libya",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Libya",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Poland",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8321",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8321
+            }
+          ],
+          "bestGuess": {
+            "name": "Libya",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Libya",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Poland",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:834",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 834
+            }
+          ],
+          "bestGuess": {
+            "name": "Venezuela",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Venezuela",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8358",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8358
+            }
+          ],
+          "bestGuess": {
+            "name": "Hungary",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Hungary",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Slovakia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8367",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8367
+            }
+          ],
+          "bestGuess": {
+            "name": "Hungary",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Hungary",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Slovakia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8446",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8446
+            }
+          ],
+          "bestGuess": {
+            "name": "Albania",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Albania",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8483",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8483
+            }
+          ],
+          "bestGuess": {
+            "name": "Serbia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Serbia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8552",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8552
+            }
+          ],
+          "bestGuess": {
+            "name": "Congo",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Congo",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "North Macedonia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8573",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8573
+            }
+          ],
+          "bestGuess": {
+            "name": "Congo",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Congo",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "North Macedonia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8623",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8623
+            }
+          ],
+          "bestGuess": {
+            "name": "Chad",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Chad",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Lithuania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8642",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 4,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8642
+            }
+          ],
+          "bestGuess": {
+            "name": "Lithuania",
+            "score": 0.875,
+            "expected": 0.75,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Lithuania",
+              "score": 0.875,
+              "expected": 0.75,
+              "worst": 1
+            },
+            {
+              "name": "Estonia",
+              "score": 0.875,
+              "expected": 0.75,
+              "worst": 1
+            },
+            {
+              "name": "Chad",
+              "score": 0.875,
+              "expected": 0.75,
+              "worst": 1
+            },
+            {
+              "name": "Latvia",
+              "score": 1.624,
+              "expected": 1.25,
+              "worst": 2
+            }
+          ]
+        },
+        {
+          "key": "66:865",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 865
+            }
+          ],
+          "bestGuess": {
+            "name": "Guyana",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Guyana",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8654",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8654
+            }
+          ],
+          "bestGuess": {
+            "name": "Latvia",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Latvia",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Estonia",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Chad",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8667",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 3,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8667
+            }
+          ],
+          "bestGuess": {
+            "name": "Estonia",
+            "score": 0.833,
+            "expected": 0.667,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Estonia",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Latvia",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            },
+            {
+              "name": "Finland",
+              "score": 0.833,
+              "expected": 0.667,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8680",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8680
+            }
+          ],
+          "bestGuess": {
+            "name": "Estonia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Estonia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Finland",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8785",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8785
+            }
+          ],
+          "bestGuess": {
+            "name": "Greece",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Greece",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Romania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8786",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8786
+            }
+          ],
+          "bestGuess": {
+            "name": "Greece",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Greece",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Romania",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:8866",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8866
+            }
+          ],
+          "bestGuess": {
+            "name": "Bulgaria",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Bulgaria",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:8899",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 8899
+            }
+          ],
+          "bestGuess": {
+            "name": "Belarus",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Belarus",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9028",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9028
+            }
+          ],
+          "bestGuess": {
+            "name": "Moldova",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Moldova",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9056",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9056
+            }
+          ],
+          "bestGuess": {
+            "name": "Central African Republic",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Central African Republic",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9160",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9160
+            }
+          ],
+          "bestGuess": {
+            "name": "Angola",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Angola",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9209",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9209
+            }
+          ],
+          "bestGuess": {
+            "name": "Ukraine",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Ukraine",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9383",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9383
+            }
+          ],
+          "bestGuess": {
+            "name": "The Democratic Republic of Congo",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "The Democratic Republic of Congo",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9552",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9552
+            }
+          ],
+          "bestGuess": {
+            "name": "Namibia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Namibia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9646",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9646
+            }
+          ],
+          "bestGuess": {
+            "name": "Egypt",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Egypt",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9690",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9690
+            }
+          ],
+          "bestGuess": {
+            "name": "Cyprus",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Cyprus",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9749",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9749
+            }
+          ],
+          "bestGuess": {
+            "name": "Turkey",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Turkey",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9850",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9850
+            }
+          ],
+          "bestGuess": {
+            "name": "Sudan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Sudan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9906",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9906
+            }
+          ],
+          "bestGuess": {
+            "name": "Palestine",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Palestine",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:9934",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9934
+            }
+          ],
+          "bestGuess": {
+            "name": "Israel",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Israel",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Lebanon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "66:9941",
+          "depth": 1,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 9941
+            }
+          ],
+          "bestGuess": {
+            "name": "Israel",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Israel",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            },
+            {
+              "name": "Lebanon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "key": "0:111|66:12592",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Afghanistan",
+              "distanceKm": 111
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 12592
+            }
+          ],
+          "bestGuess": {
+            "name": "Kyrgyzstan",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Kyrgyzstan",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "107:509|66:5467",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Mauritania",
+              "distanceKm": 509
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 5467
+            }
+          ],
+          "bestGuess": {
+            "name": "Sierra Leone",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Sierra Leone",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "12:771|66:11556",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Bahrain",
+              "distanceKm": 771
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 11556
+            }
+          ],
+          "bestGuess": {
+            "name": "Iran",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Iran",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "125:933|66:7669",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Nigeria",
+              "distanceKm": 933
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 7669
+            }
+          ],
+          "bestGuess": {
+            "name": "Sao Tome and Principe",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Sao Tome and Principe",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "134:4354|66:16656",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Papua New Guinea",
+              "distanceKm": 4354
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 16656
+            }
+          ],
+          "bestGuess": {
+            "name": "Thailand",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Thailand",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "158:8434|66:15302",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Solomon Islands",
+              "distanceKm": 8434
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 15302
+            }
+          ],
+          "bestGuess": {
+            "name": "Sri Lanka",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Sri Lanka",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "17:163|66:2954",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Belize",
+              "distanceKm": 163
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 2954
+            }
+          ],
+          "bestGuess": {
+            "name": "El Salvador",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "El Salvador",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "184:1394|66:6918",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "United Kingdom",
+              "distanceKm": 1394
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 6918
+            }
+          ],
+          "bestGuess": {
+            "name": "Andorra",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Andorra",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "21:4519|66:8213",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Bosnia and Herzegovina",
+              "distanceKm": 4519
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8213
+            }
+          ],
+          "bestGuess": {
+            "name": "Gabon",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Gabon",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "23:2549|66:3103",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Brazil",
+              "distanceKm": 2549
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 3103
+            }
+          ],
+          "bestGuess": {
+            "name": "Guatemala",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Guatemala",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "27:426|66:10264",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Burundi",
+              "distanceKm": 426
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 10264
+            }
+          ],
+          "bestGuess": {
+            "name": "Zambia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Zambia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "29:3316|66:8128",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Cameroon",
+              "distanceKm": 3316
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8128
+            }
+          ],
+          "bestGuess": {
+            "name": "Croatia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Croatia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "3:1394|66:6895",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Andorra",
+              "distanceKm": 1394
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 6895
+            }
+          ],
+          "bestGuess": {
+            "name": "United Kingdom",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "United Kingdom",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "3:4733|66:6936",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Andorra",
+              "distanceKm": 4733
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 6936
+            }
+          ],
+          "bestGuess": {
+            "name": "Montenegro",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Montenegro",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "33:3451|66:8623",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Chad",
+              "distanceKm": 3451
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8623
+            }
+          ],
+          "bestGuess": {
+            "name": "Lithuania",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Lithuania",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "35:288|66:14581",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "China",
+              "distanceKm": 288
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 14581
+            }
+          ],
+          "bestGuess": {
+            "name": "South Korea",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "South Korea",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "37:4176|66:11942",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Comoros",
+              "distanceKm": 4176
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 11942
+            }
+          ],
+          "bestGuess": {
+            "name": "United Arab Emirates",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "United Arab Emirates",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "38:4145|66:8573",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Congo",
+              "distanceKm": 4145
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8573
+            }
+          ],
+          "bestGuess": {
+            "name": "North Macedonia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "North Macedonia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "43:5938|66:8069",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Czech Republic",
+              "distanceKm": 5938
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8069
+            }
+          ],
+          "bestGuess": {
+            "name": "Kiribati",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Kiribati",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "5:98|66:578",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Antigua and Barbuda",
+              "distanceKm": 98
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 578
+            }
+          ],
+          "bestGuess": {
+            "name": "Saint Kitts and Nevis",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Saint Kitts and Nevis",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "52:4814|66:8014",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Equatorial Guinea",
+              "distanceKm": 4814
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8014
+            }
+          ],
+          "bestGuess": {
+            "name": "Slovenia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Slovenia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "53:1732|66:10868",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Eritrea",
+              "distanceKm": 1732
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 10868
+            }
+          ],
+          "bestGuess": {
+            "name": "Tanzania",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Tanzania",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "54:65|66:8680",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Estonia",
+              "distanceKm": 65
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8680
+            }
+          ],
+          "bestGuess": {
+            "name": "Finland",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Finland",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "56:320|66:11113",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Ethiopia",
+              "distanceKm": 320
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 11113
+            }
+          ],
+          "bestGuess": {
+            "name": "Saudi Arabia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Saudi Arabia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "62:7158|66:10300",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Georgia",
+              "distanceKm": 7158
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 10300
+            }
+          ],
+          "bestGuess": {
+            "name": "South Africa",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "South Africa",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "65:212|66:8785",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Greece",
+              "distanceKm": 212
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8785
+            }
+          ],
+          "bestGuess": {
+            "name": "Romania",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Romania",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:5008|61:6382",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 5008
+            },
+            {
+              "name": "Gambia",
+              "distanceKm": 6382
+            }
+          ],
+          "bestGuess": {
+            "name": "Uruguay",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Uruguay",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7518|168:16397",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7518
+            },
+            {
+              "name": "Switzerland",
+              "distanceKm": 16397
+            }
+          ],
+          "bestGuess": {
+            "name": "Fiji Islands",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Fiji Islands",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "66:7536|57:17434",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Grenada",
+              "distanceKm": 7536
+            },
+            {
+              "name": "Fiji Islands",
+              "distanceKm": 17434
+            }
+          ],
+          "bestGuess": {
+            "name": "Tunisia",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Tunisia",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "68:239|66:5475",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Guinea",
+              "distanceKm": 239
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 5475
+            }
+          ],
+          "bestGuess": {
+            "name": "Mauritania",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Mauritania",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "7:6254|66:10531",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Armenia",
+              "distanceKm": 6254
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 10531
+            }
+          ],
+          "bestGuess": {
+            "name": "Zimbabwe",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Zimbabwe",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "73:0|66:8367",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Hungary",
+              "distanceKm": 0
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8367
+            }
+          ],
+          "bestGuess": {
+            "name": "Slovakia",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Slovakia",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "75:8810|66:14630",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "India",
+              "distanceKm": 8810
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 14630
+            }
+          ],
+          "bestGuess": {
+            "name": "Vanuatu",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Vanuatu",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "78:6656|66:10666",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Iraq",
+              "distanceKm": 6656
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 10666
+            }
+          ],
+          "bestGuess": {
+            "name": "Lesotho",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Lesotho",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "80:0|66:9941",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 2,
+          "state": [
+            {
+              "name": "Israel",
+              "distanceKm": 0
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 9941
+            }
+          ],
+          "bestGuess": {
+            "name": "Lebanon",
+            "score": 0.75,
+            "expected": 0.5,
+            "worst": 1
+          },
+          "top": [
+            {
+              "name": "Lebanon",
+              "score": 0.75,
+              "expected": 0.5,
+              "worst": 1
+            }
+          ]
+        },
+        {
+          "key": "81:230|66:7809",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Italy",
+              "distanceKm": 230
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 7809
+            }
+          ],
+          "bestGuess": {
+            "name": "San Marino",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "San Marino",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "84:5189|66:14501",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Japan",
+              "distanceKm": 5189
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 14501
+            }
+          ],
+          "bestGuess": {
+            "name": "Nauru",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Nauru",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "86:1727|66:11641",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Kazakhstan",
+              "distanceKm": 1727
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 11641
+            }
+          ],
+          "bestGuess": {
+            "name": "Qatar",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Qatar",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "96:1803|66:8320",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Libya",
+              "distanceKm": 1803
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8320
+            }
+          ],
+          "bestGuess": {
+            "name": "Poland",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Poland",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "98:3451|66:8642",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Lithuania",
+              "distanceKm": 3451
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 8642
+            }
+          ],
+          "bestGuess": {
+            "name": "Chad",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Chad",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "99:683|66:7404",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Luxembourg",
+              "distanceKm": 683
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 7404
+            }
+          ],
+          "bestGuess": {
+            "name": "Monaco",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Monaco",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        },
+        {
+          "key": "99:76|66:7380",
+          "depth": 2,
+          "hits": 1,
+          "candidateCount": 1,
+          "state": [
+            {
+              "name": "Luxembourg",
+              "distanceKm": 76
+            },
+            {
+              "name": "Grenada",
+              "distanceKm": 7380
+            }
+          ],
+          "bestGuess": {
+            "name": "Netherlands",
+            "score": 0,
+            "expected": 0,
+            "worst": 0
+          },
+          "top": [
+            {
+              "name": "Netherlands",
+              "score": 0,
+              "expected": 0,
+              "worst": 0
+            }
+          ]
+        }
+      ]
+    }
   }
 }
