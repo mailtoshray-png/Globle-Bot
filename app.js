@@ -12,6 +12,11 @@ const GEOJSON_SOURCES = [
   'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json',
 ];
 
+const D3_SOURCES = [
+  'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js',
+  'https://unpkg.com/d3@7/dist/d3.min.js',
+];
+
 const FALLBACK_COUNTRIES = [
   { name: 'United States', lat: 38, lon: -97 },
   { name: 'Canada', lat: 56.1304, lon: -106.3468 },
@@ -47,6 +52,7 @@ const DEFAULT_TRI_WEIGHT_3 = 0.5;
 const DEFAULT_TRI_WEIGHT_4 = 0.6;
 const DEFAULT_AVG_WORST_WEIGHT = 0.7;
 const DEFAULT_FARTHEST_WEIGHT = 0.2;
+let d3LoaderPromise = null;
 
 const aliasCandidates = [
   ['usa', ['United States', 'United States of America']],
@@ -96,6 +102,9 @@ const state = {
   training: null,
   sovereignSet: null,
   rankWeights: null,
+  lastMapCandidates: null,
+  lastMapBestIndex: null,
+  resizeAttached: false,
 };
 
 const elements = {
@@ -125,6 +134,35 @@ function setStatus(message, tone = 'loading') {
   elements.status.classList.remove('ok', 'error');
   if (tone === 'ok') elements.status.classList.add('ok');
   if (tone === 'error') elements.status.classList.add('error');
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+}
+
+async function ensureD3() {
+  if (window.d3) return true;
+  if (!d3LoaderPromise) {
+    d3LoaderPromise = (async () => {
+      for (const source of D3_SOURCES) {
+        try {
+          await loadScript(source);
+          if (window.d3) return true;
+        } catch (error) {
+          // try next source
+        }
+      }
+      throw new Error('D3 unavailable');
+    })();
+  }
+  return d3LoaderPromise;
 }
 
 function simplifyName(value) {
@@ -241,7 +279,7 @@ async function loadCountries() {
 }
 
 async function loadGeoData() {
-  if (!window.turf || !window.L) {
+  if (!window.turf) {
     elements.map.innerHTML = '<div class="map-label">Map unavailable</div>';
     setStatus('Map libraries missing.', 'error');
     return;
@@ -254,6 +292,7 @@ async function loadGeoData() {
       if (!response.ok) throw new Error('bad response');
       const payload = await response.json();
       if (payload && payload.features && payload.features.length > 50) {
+        await ensureD3();
         prepareGeoData(payload);
         return;
       }
@@ -480,68 +519,168 @@ function haversineKm(lat1, lon1, lat2, lon2) {
   return R * c;
 }
 
+function getGlobeDimensions() {
+  const width = Math.max(elements.map.clientWidth || 0, 320);
+  const height = Math.max(elements.map.clientHeight || 0, 320);
+  const radius = Math.min(width, height) * 0.42;
+  return { width, height, radius };
+}
+
+function getMapFocusIndex(candidates, bestIndex) {
+  if (bestIndex !== null && bestIndex !== undefined) return bestIndex;
+  if (state.guesses.length) return state.guesses[0].index;
+  if (Array.isArray(candidates) && candidates.length) return candidates[0];
+  return 0;
+}
+
 function initMap() {
-  if (!window.L || !state.geojson) {
+  if (!window.d3 || !state.geojson) {
     elements.map.innerHTML = '<div class="map-label">Map unavailable</div>';
     return;
   }
+
+  const d3 = window.d3;
+  const { width, height, radius } = getGlobeDimensions();
   elements.map.innerHTML = '';
 
-  state.map = window.L.map(elements.map, {
-    zoomControl: false,
-    attributionControl: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false,
-  });
+  const shell = document.createElement('div');
+  shell.className = 'globe-shell';
+  elements.map.appendChild(shell);
 
-  const boundsLayer = window.L.geoJSON(state.geojson);
-  state.map.fitBounds(boundsLayer.getBounds(), { padding: [10, 10] });
+  const svg = d3.select(shell)
+    .append('svg')
+    .attr('class', 'globe-svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('role', 'img')
+    .attr('aria-label', 'Globle country map shown as a globe');
 
-  state.geoLayer = window.L.geoJSON(state.geojson, {
-    style: () => ({
-      fillColor: '#fff7ef',
-      fillOpacity: 0.8,
-      color: 'rgba(26, 31, 44, 0.5)',
-      weight: 0.6,
-    }),
-  }).addTo(state.map);
+  const defs = svg.append('defs');
+  const oceanGradient = defs.append('radialGradient')
+    .attr('id', 'globe-ocean-gradient')
+    .attr('cx', '40%')
+    .attr('cy', '35%');
+  oceanGradient.append('stop').attr('offset', '0%').attr('stop-color', '#d8f3ff');
+  oceanGradient.append('stop').attr('offset', '55%').attr('stop-color', '#87c9ee');
+  oceanGradient.append('stop').attr('offset', '100%').attr('stop-color', '#1f6fa8');
+
+  const atmosphereGradient = defs.append('radialGradient')
+    .attr('id', 'globe-atmosphere-gradient')
+    .attr('cx', '50%')
+    .attr('cy', '45%');
+  atmosphereGradient.append('stop').attr('offset', '72%').attr('stop-color', 'rgba(255,255,255,0)');
+  atmosphereGradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(194,233,255,0.65)');
+
+  svg.append('ellipse')
+    .attr('cx', width / 2)
+    .attr('cy', height * 0.84)
+    .attr('rx', radius * 0.78)
+    .attr('ry', radius * 0.22)
+    .attr('fill', 'rgba(21, 51, 77, 0.16)');
+
+  const projection = d3.geoOrthographic()
+    .scale(radius)
+    .translate([width / 2, height / 2])
+    .clipAngle(90)
+    .precision(0.5);
+
+  const path = d3.geoPath(projection);
+  const graticule = d3.geoGraticule10();
+
+  const globeGroup = svg.append('g').attr('class', 'globe-root');
+  const sphere = globeGroup.append('path')
+    .datum({ type: 'Sphere' })
+    .attr('fill', 'url(#globe-ocean-gradient)');
+  const graticulePath = globeGroup.append('path')
+    .datum(graticule)
+    .attr('fill', 'none')
+    .attr('stroke', 'rgba(255, 255, 255, 0.18)')
+    .attr('stroke-width', 0.8);
+  const countryLayer = globeGroup.append('g').attr('class', 'globe-countries');
+  const countryPaths = countryLayer.selectAll('path')
+    .data(state.geojson.features)
+    .join('path');
+  const rim = globeGroup.append('circle')
+    .attr('cx', width / 2)
+    .attr('cy', height / 2)
+    .attr('r', radius)
+    .attr('fill', 'none')
+    .attr('stroke', 'rgba(255, 255, 255, 0.45)')
+    .attr('stroke-width', 1.2);
+  const atmosphere = globeGroup.append('circle')
+    .attr('cx', width / 2)
+    .attr('cy', height / 2)
+    .attr('r', radius * 1.03)
+    .attr('fill', 'url(#globe-atmosphere-gradient)');
+
+  state.map = {
+    svg,
+    projection,
+    path,
+    sphere,
+    graticulePath,
+    countryPaths,
+    rim,
+    atmosphere,
+    width,
+    height,
+    radius,
+  };
 }
 
-function updateMap(candidates, bestIndex) {
-  if (!state.geoLayer) return;
+function renderGlobe(candidates, bestIndex) {
+  if (!state.map || !window.d3) return;
+
   const candidateSet = new Set(candidates);
   const guessedSet = new Set(state.guesses.map((guess) => guess.index));
   const closestSet = new Set(state.guesses.length ? [state.guesses[0].index] : []);
   const lastGuess = state.guesses.length ? state.guesses[state.guesses.length - 1].index : null;
+  const focusIndex = getMapFocusIndex(candidates, bestIndex);
+  const focusCountry = state.countries[focusIndex];
+  const [focusLon, focusLat] = focusCountry?.centroid || [0, 0];
 
-  state.geoLayer.setStyle((feature) => {
-    const idx = feature.properties._index;
-    let fillColor = '#fff7ef';
-    let fillOpacity = 0.82;
-    if (closestSet.has(idx)) {
-      fillColor = '#8e0b0b';
-      fillOpacity = 0.92;
-    } else if (guessedSet.has(idx)) {
-      fillColor = '#f4a261';
-      fillOpacity = 0.85;
-    } else if (!candidateSet.has(idx)) {
-      fillColor = '#e0e0e0';
-      fillOpacity = 0.4;
-    }
+  state.map.projection.rotate([-focusLon, -focusLat]);
+  state.map.sphere.attr('d', state.map.path({ type: 'Sphere' }));
+  state.map.graticulePath.attr('d', state.map.path(window.d3.geoGraticule10()));
 
-    let weight = idx === bestIndex ? 2.2 : 0.6;
-    let color = idx === lastGuess ? '#1a1f2c' : 'rgba(26, 31, 44, 0.5)';
-    if (closestSet.has(idx)) color = '#2b0a0a';
+  state.map.countryPaths
+    .attr('d', (feature) => state.map.path(feature))
+    .attr('fill', (feature) => {
+      const idx = feature.properties._index;
+      if (closestSet.has(idx)) return '#8e0b0b';
+      if (guessedSet.has(idx)) return '#f4a261';
+      if (!candidateSet.has(idx)) return '#d7dde3';
+      if (idx === bestIndex) return '#ffde8a';
+      return '#fff8ee';
+    })
+    .attr('fill-opacity', (feature) => {
+      const idx = feature.properties._index;
+      if (closestSet.has(idx)) return 0.96;
+      if (guessedSet.has(idx)) return 0.88;
+      if (!candidateSet.has(idx)) return 0.35;
+      if (idx === bestIndex) return 0.95;
+      return 0.86;
+    })
+    .attr('stroke', (feature) => {
+      const idx = feature.properties._index;
+      if (closestSet.has(idx)) return '#240404';
+      if (idx === lastGuess) return '#0f1721';
+      if (idx === bestIndex) return '#7d4d00';
+      return 'rgba(26, 31, 44, 0.52)';
+    })
+    .attr('stroke-width', (feature) => {
+      const idx = feature.properties._index;
+      if (idx === bestIndex) return 1.8;
+      if (closestSet.has(idx)) return 1.3;
+      return 0.75;
+    })
+    .attr('vector-effect', 'non-scaling-stroke');
+}
 
-    return {
-      fillColor,
-      fillOpacity,
-      color,
-      weight,
-    };
-  });
+function updateMap(candidates, bestIndex) {
+  state.lastMapCandidates = candidates.slice();
+  state.lastMapBestIndex = bestIndex;
+  if (!state.map) return;
+  renderGlobe(candidates, bestIndex);
 }
 
 async function loadDistances() {
@@ -1169,6 +1308,14 @@ function attachEvents() {
   elements.addGuess.addEventListener('click', addGuess);
   elements.undoGuess.addEventListener('click', undoGuess);
   elements.resetGuess.addEventListener('click', resetGuesses);
+  if (!state.resizeAttached) {
+    window.addEventListener('resize', () => {
+      if (!state.geojson || !state.lastMapCandidates) return;
+      initMap();
+      renderGlobe(state.lastMapCandidates, state.lastMapBestIndex);
+    });
+    state.resizeAttached = true;
+  }
   elements.countryInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
